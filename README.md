@@ -2,9 +2,14 @@
 
 ## Quem participa desse projeto e com qual função?
 
-- Jane - Back End
-- Paulo - Back End
-- Dakson - Front End
+<img src="https://avatars.githubusercontent.com/u/84737472?v=4" width=115 height="auto"><br><sub>- Janen</sub><br><sub>- Back End</sub>
+ 
+
+<img src="https://avatars.githubusercontent.com/u/94421128?v=4" width=115 height="auto"><br><sub>- Paulo</sub><br><sub>- Back End</sub>
+ 
+
+<img src="https://avatars.githubusercontent.com/u/81385265?v=4" width=115 height="auto"><br><sub>- Dakson</sub><br><sub>- Front End</sub>
+ 
 
 ## Dor/Problema
 
