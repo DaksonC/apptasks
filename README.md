@@ -2,9 +2,9 @@
 
 ## Quem participa desse projeto e com qual função?
 
-| [<img src="https://avatars.githubusercontent.com/u/84737472?v=4" width=115><br><sub>Jane Luz</sub>](https://github.com/camilafernanda) |  [<img src="https://avatars.githubusercontent.com/u/94421128?v=4" width=115><br><sub>Paulo Andreola</sub>](https://github.com/guilhermeonrails) |  [<img src="https://avatars.githubusercontent.com/u/81385265?v=4" width=115><br><sub>Dakson Cruz</sub>](https://github.com/alexfelipe) |
+| [<img src="https://avatars.githubusercontent.com/u/84737472?v=4" width=115><br><sub>Jane Luz</sub>](https://github.com/janeluz) |  [<img src="https://avatars.githubusercontent.com/u/94421128?v=4" width=115><br><sub>Paulo Andreola</sub>](https://github.com/pauloandreola) |  [<img src="https://avatars.githubusercontent.com/u/81385265?v=4" width=115><br><sub>Dakson Cruz</sub>](https://github.com/DaksonC) |
 | :---: | :---: | :---: |
-|Back End|Back End|Front End|
+|<sub>Back End</sub>|<sub>Back End</sub>|<sub>Front End</sub>|
 
  
 
