@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import logo from './assets/logo.svg'
-import './App.css'
+import logo from "./assets/logo.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
-     <h1>AppTasks | SideLab</h1> 
+      <h1>AppTasks</h1>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
