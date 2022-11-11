@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import logo from './assets/logo.svg'
 import './App.css'
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src={logo} className="App-logo" alt="logo" />
      <h1>AppTasks | SideLab</h1> 
     </div>
   )
