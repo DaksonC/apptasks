@@ -1,13 +1,7 @@
-import logo from "./assets/logo.svg";
-import "./App.css";
+import { LandingPage } from "./page/LandingPage";
 
 function App() {
-  return (
-    <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1>AppTasks</h1>
-    </div>
-  );
+  return <LandingPage />;
 }
 
 export default App;
