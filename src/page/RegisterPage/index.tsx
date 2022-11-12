@@ -1,6 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export function RegisterPage() {
+  useEffect(() => {
+    document.title = "AppTasks ✔️️ | Cadastrar-se";
+  }, []);
+
   return (
     <Box
       w="100vw"

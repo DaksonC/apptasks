@@ -11,11 +11,15 @@ import {
   InputRightElement,
   Icon,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function LoginPage() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  useEffect(() => {
+    document.title = "AppTasks ✔️️ | Conecte-se";
+  }, []);
 
   return (
     <Box

@@ -1,6 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export function NotFound() {
+  useEffect(() => {
+    document.title = "AppTasks ✔️️ | Not Found";
+  }, []);
+
   return (
     <Box
       w="100vw"
