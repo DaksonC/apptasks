@@ -1,3 +1,4 @@
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Box,
   Grid,
@@ -8,6 +9,7 @@ import {
   InputGroup,
   Button,
   InputRightElement,
+  Icon,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -92,7 +94,11 @@ export function LoginPage() {
                 />
                 <InputRightElement width="4.5rem">
                   <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? "Hide" : "Show"}
+                    {show ? (
+                      <Icon as={ViewIcon} boxSize="1.5em" />
+                    ) : (
+                      <Icon as={ViewOffIcon} boxSize="1.5em" />
+                    )}
                   </Button>
                 </InputRightElement>
               </InputGroup>
