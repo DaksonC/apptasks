@@ -8,6 +8,7 @@ import {
   keyframes,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.svg";
 
@@ -19,6 +20,16 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 11s ease-in-out infinite`;
 
 export function LandingPage() {
+  const navigate = useNavigate();
+
+  function handleNavigateToLogin() {
+    navigate("/login");
+  }
+
+  function handleNavigateToRegister() {
+    navigate("/register");
+  }
+
   return (
     <Box
       w="100vw"
@@ -53,10 +64,18 @@ export function LandingPage() {
             </Container>
           </Box>
           <Stack direction="row" spacing={2} align="center">
-            <Button colorScheme="facebook" variant="solid">
+            <Button
+              colorScheme="facebook"
+              variant="solid"
+              onClick={() => handleNavigateToLogin()}
+            >
               Entrar
             </Button>
-            <Button colorScheme="facebook" variant="ghost">
+            <Button
+              colorScheme="facebook"
+              variant="ghost"
+              onClick={() => handleNavigateToRegister()}
+            >
               Cadastrar-se
             </Button>
           </Stack>
