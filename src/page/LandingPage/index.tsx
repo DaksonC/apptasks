@@ -16,17 +16,17 @@ const animationKeyframes = keyframes`
   49% { transform: scale(1) rotate(-360deg); }
 `;
 
-const animation = `${animationKeyframes} 9s ease-in-out infinite`;
+const animation = `${animationKeyframes} 11s ease-in-out infinite`;
 
 export function LandingPage() {
   return (
     <Box
       w="100vw"
       h="100vh"
-      bgGradient="linear(to-t, gray.900, gray.600)"
       display="flex"
       justifyContent="center"
       alignItems="center"
+      bgGradient="linear(to-t, gray.900, gray.600)"
     >
       <Stack
         direction={{ base: "column", lg: "row" }}
@@ -43,12 +43,12 @@ export function LandingPage() {
         <Box>
           <Box marginBottom={4}>
             <Text fontSize={["4xl", "6xl"]} fontWeight="extrabold">
-              AppTasks
+              AppTasks ✔️️
             </Text>
             <Container maxWidth="2xs" centerContent>
               <Text color="gray.500">
-                Salve #dataholic! É aqui que vc cadastra suas #tasks e acompanha
-                o trampo de todos! 🚀💻☕💙
+                Salve 💙dataholic, é aqui que vc se cadastra e cadastra suas
+                tasks e acompanha o trampo de todos! 🚀💻☕
               </Text>
             </Container>
           </Box>
@@ -57,7 +57,7 @@ export function LandingPage() {
               Entrar
             </Button>
             <Button colorScheme="facebook" variant="ghost">
-              Casastrar-se
+              Cadastrar-se
             </Button>
           </Stack>
         </Box>
