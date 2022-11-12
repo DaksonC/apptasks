@@ -21,41 +21,47 @@ const animation = `${animationKeyframes} 9s ease-in-out infinite`;
 export function LandingPage() {
   return (
     <Box
-      w="100%"
+      w="100vw"
       h="100vh"
       bgGradient="linear(to-t, gray.900, gray.600)"
       display="flex"
       justifyContent="center"
       alignItems="center"
     >
-      <Image
-        src={logo}
-        alt="logo"
-        boxSize="450px"
-        as={motion.img}
-        animation={animation}
-      />
-      <Box>
-        <Box marginBottom={4}>
-          <Text fontSize={["4xl", "6xl"]} fontWeight="extrabold">
-            AppTasks
-          </Text>
-          <Container maxWidth="2xs" centerContent>
-            <Text color="gray.500">
-              Salve #dataholic! É aqui que vc cadastra suas #tasks e acompanha o
-              trampo de todos! 🚀💻☕💙
+      <Stack
+        direction={{ base: "column", lg: "row" }}
+        spacing={2}
+        align="center"
+      >
+        <Image
+          src={logo}
+          alt="logo"
+          boxSize={{ base: "240px", md: "340px", lg: "440px" }}
+          as={motion.img}
+          animation={animation}
+        />
+        <Box>
+          <Box marginBottom={4}>
+            <Text fontSize={["4xl", "6xl"]} fontWeight="extrabold">
+              AppTasks
             </Text>
-          </Container>
+            <Container maxWidth="2xs" centerContent>
+              <Text color="gray.500">
+                Salve #dataholic! É aqui que vc cadastra suas #tasks e acompanha
+                o trampo de todos! 🚀💻☕💙
+              </Text>
+            </Container>
+          </Box>
+          <Stack direction="row" spacing={2} align="center">
+            <Button colorScheme="facebook" variant="solid">
+              Entrar
+            </Button>
+            <Button colorScheme="facebook" variant="ghost">
+              Casastrar-se
+            </Button>
+          </Stack>
         </Box>
-        <Stack direction="row" spacing={2} align="center">
-          <Button colorScheme="facebook" variant="solid">
-            Entrar
-          </Button>
-          <Button colorScheme="facebook" variant="ghost">
-            Casastrar-se
-          </Button>
-        </Stack>
-      </Box>
+      </Stack>
     </Box>
   );
 }
