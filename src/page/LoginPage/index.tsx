@@ -26,7 +26,7 @@ export function LoginPage() {
     >
       <Box
         w="100%"
-        h="70%"
+        h={{ "80%": "80%", "100%": "100%" }}
         maxW="460px"
         bg="gray.100"
         p="8"
@@ -39,7 +39,8 @@ export function LoginPage() {
         <Grid
           templateAreas={`
             "header header"
-            "main main"`}
+            "main main"
+            "footer footer"`}
           gridTemplateRows="50px 1fr 30px"
           gridTemplateColumns="150px 1fr"
           w="100%"
@@ -95,7 +96,24 @@ export function LoginPage() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              <Button
+                w="100%"
+                h="50px"
+                bgGradient="linear(to-l, #4028ca, #6e5faf)"
+                color="white"
+                _hover={{
+                  bgGradient: "linear(to-l, #4028ca, #6e5faf)",
+                  filter: "brightness(0.9)",
+                }}
+              >
+                Entrar
+              </Button>
             </Box>
+          </GridItem>
+          <GridItem area="footer" textAlign="center">
+            <Text fontSize="md" fontWeight="extrabold">
+              AppTasks ✔️️
+            </Text>
           </GridItem>
         </Grid>
       </Box>
