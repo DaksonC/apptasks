@@ -14,6 +14,8 @@ export const theme = extendTheme({
       "800": "#1A202C",
       "900": "#171923",
     },
+    attention: "#fa023c",
+    attention_light: "rgba(250, 2, 60, 0.7)",
   },
   breakpoints: {
     sm: "18.75rem", // 300px

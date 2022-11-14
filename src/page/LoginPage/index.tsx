@@ -10,8 +10,11 @@ import {
   Button,
   InputRightElement,
   Icon,
+  Link,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+
+import { theme } from "../../styles/theme";
 
 export function LoginPage() {
   useEffect(() => {
@@ -83,6 +86,15 @@ export function LoginPage() {
               alignItems="center"
               flexDirection="column"
             >
+              <Box w="100%" textAlign="right">
+                <Text
+                  color={theme.colors.attention}
+                  fontWeight="light"
+                  fontSize="sm"
+                >
+                  <Link href="/register">Não sou cadastrado</Link>
+                </Text>
+              </Box>
               <Input
                 pr="4.5rem"
                 type="email"
