@@ -144,7 +144,7 @@ export function RegisterPage() {
                   filter: "brightness(0.9)",
                 }}
               >
-                Entrar
+                Cadastrar
               </Button>
             </Box>
           </GridItem>
