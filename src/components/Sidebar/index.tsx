@@ -53,6 +53,7 @@ export function Sidebar() {
       bg={useColorModeValue("gray.800", "gray.900")}
       px={8}
       pos="fixed"
+      zIndex={1}
     >
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <IconButton

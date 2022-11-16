@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
+import { HighlightCard } from "../../components/HighlightCard";
 import { Sidebar } from "../../components/Sidebar";
 
 export function Home() {
@@ -14,7 +15,7 @@ export function Home() {
         alignItems="center"
         bgGradient="linear(to-t, gray.900, gray.600)"
       >
-        Home
+        <HighlightCard />
       </Box>
     </>
   );
