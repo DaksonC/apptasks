@@ -19,6 +19,8 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode, useEffect } from "react";
 
+import SearchBox from "../SearchBox";
+
 const Links = ["Dashboard", "Minhas Tasks", "Perfil"];
 
 function NavLink({ children }: { children: ReactNode }) {
@@ -75,6 +77,7 @@ export function Sidebar() {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
+            <SearchBox />
           </HStack>
         </HStack>
         <Flex alignItems="center">
