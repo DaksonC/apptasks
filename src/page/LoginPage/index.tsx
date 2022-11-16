@@ -17,12 +17,12 @@ import { useEffect, useState } from "react";
 import { theme } from "../../styles/theme";
 
 export function LoginPage() {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+
   useEffect(() => {
     document.title = "AppTasks ✔️️ | Conecte-se";
   }, []);
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
 
   return (
     <Box
