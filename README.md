@@ -1,3 +1,5 @@
+⚠️ status - em desenvolvimento...
+
 # AppTasks
 
 ## Quem participa desse projeto e com qual função?
