@@ -33,7 +33,7 @@ function NavLink({ children }: { children: ReactNode }) {
         textDecoration: "none",
         bg: useColorModeValue("gray.500", "gray.700"),
       }}
-      href="/"
+      href={`/${children}`}
     >
       {children}
     </Link>

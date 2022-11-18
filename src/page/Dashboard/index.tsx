@@ -1,9 +1,14 @@
 import { Box } from "@chakra-ui/react";
+import { useEffect } from "react";
 
-import { HighlightCard } from "../../components/HighlightCard";
+import { GraphicCard } from "../../components/GraphicCard";
 import { Sidebar } from "../../components/Sidebar";
 
-export function Home() {
+export function Dashboard() {
+  useEffect(() => {
+    document.title = "AppTasks ✔️️ |  Dashboard";
+  }, []);
+
   return (
     <>
       <Sidebar />
@@ -15,7 +20,7 @@ export function Home() {
         alignItems="center"
         bgGradient="linear(to-t, gray.900, gray.600)"
       >
-        <HighlightCard />
+        <GraphicCard />
       </Box>
     </>
   );
