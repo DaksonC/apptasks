@@ -1,11 +1,33 @@
-import { Box, Flex, Select, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Select, Text } from "@chakra-ui/react";
 import ApexCharts from "react-apexcharts";
 
 export function GraphicCard() {
   const options = {
+    chart: {
+      width: 380,
+      toolbar: {
+        show: false,
+      },
+      zoom: {
+        enabled: true,
+      },
+      foreColor: "#f6f8fc",
+    },
     labels: ["Completed", "In Progress", "To Do", "Blocked", "Canceled"],
     colors: ["#040841", "#191880", "#4371ad", "#62639b", "#b4b6f5"],
-
+    responsive: [
+      {
+        breakpoint: 380,
+        options: {
+          chart: {
+            width: 300,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
     plotOptions: {
       pie: {
         startAngle: 0,
@@ -66,50 +88,57 @@ export function GraphicCard() {
   };
 
   return (
-    <Box
-      w="100%"
-      maxWidth="590px"
-      h="100%"
-      maxHeight="320px"
-      borderRadius="8px"
-      p="8"
-      bg="gray.800"
-      boxShadow="0 0 60px rgba(0, 0, 0, 0.5)"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box>
-        <Flex
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
-            Total Task
-          </Text>
-          <Select
-            w="40%"
-            placeholder="Select Period"
-            color="gray.100"
-            bg="gray.700"
-            borderColor="gray.700"
-            _hover={{
-              borderColor: "gray.500",
-            }}
+    <Flex direction="column">
+      <Box
+        as={Grid}
+        w="100%"
+        maxWidth="590px"
+        h="100%"
+        maxHeight="320px"
+        borderRadius="8px"
+        p="8"
+        bg="gray.800"
+        boxShadow="0 0 60px rgba(0, 0, 0, 0.5)"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        overflow="hidden"
+      >
+        <Box>
+          <Flex
+            as={GridItem}
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            <option value="option1">Year</option>
-            <option value="option2">Month</option>
-            <option value="option3">Day</option>
-          </Select>
-        </Flex>
-        <ApexCharts
-          options={options}
-          series={[44, 55, 41, 17, 15]}
-          type="donut"
-          width="380"
-        />
+            <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
+              Total Task
+            </Text>
+            <Select
+              w="40%"
+              placeholder="Select Period"
+              fontSize={["md", "2xs"]}
+              color="gray.100"
+              bg="gray.700"
+              borderColor="gray.700"
+              _hover={{
+                borderColor: "gray.500",
+              }}
+            >
+              <option value="option1">Year</option>
+              <option value="option2">Month</option>
+              <option value="option3">Day</option>
+            </Select>
+          </Flex>
+          <Flex as={GridItem}>
+            <ApexCharts
+              options={options}
+              series={[44, 55, 41, 17, 15]}
+              type="donut"
+            />
+          </Flex>
+        </Box>
       </Box>
-    </Box>
+    </Flex>
   );
 }
