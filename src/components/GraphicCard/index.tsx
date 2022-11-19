@@ -4,7 +4,7 @@ import ApexCharts from "react-apexcharts";
 export function GraphicCard() {
   const options = {
     chart: {
-      width: 380,
+      width: 480,
       toolbar: {
         show: false,
       },
@@ -52,7 +52,7 @@ export function GraphicCard() {
               fontWeight: 600,
               color: undefined,
               offsetY: -10,
-              formatter(val: any) {
+              formatter(val: string) {
                 return val;
               },
             },
@@ -63,7 +63,7 @@ export function GraphicCard() {
               fontWeight: 400,
               color: undefined,
               offsetY: 16,
-              formatter(val: any) {
+              formatter(val: string) {
                 return val;
               },
             },
@@ -88,57 +88,50 @@ export function GraphicCard() {
   };
 
   return (
-    <Flex direction="column">
-      <Box
-        as={Grid}
-        w="100%"
-        maxWidth="590px"
-        h="100%"
-        maxHeight="320px"
-        borderRadius="8px"
-        p="8"
-        bg="gray.800"
-        boxShadow="0 0 60px rgba(0, 0, 0, 0.5)"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        overflow="hidden"
-      >
-        <Box>
-          <Flex
-            as={GridItem}
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
+    <Box
+      as={Grid}
+      w="100%"
+      maxWidth="590px"
+      h="100%"
+      maxHeight="320px"
+      borderRadius="8px"
+      p="8"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      overflow="hidden"
+      bg="gray.800"
+      boxShadow="0 0 60px rgba(0, 0, 0, 0.5)"
+    >
+      <Flex direction="column">
+        <Flex direction="row" justifyContent="space-between">
+          <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
+            Total Tasks
+          </Text>
+          <Select
+            w="50%"
+            placeholder="Select Period"
+            fontSize={["md", "2xs"]}
+            color="gray.100"
+            bg="gray.700"
+            borderColor="gray.700"
+            _hover={{
+              borderColor: "gray.500",
+            }}
           >
-            <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
-              Total Task
-            </Text>
-            <Select
-              w="40%"
-              placeholder="Select Period"
-              fontSize={["md", "2xs"]}
-              color="gray.100"
-              bg="gray.700"
-              borderColor="gray.700"
-              _hover={{
-                borderColor: "gray.500",
-              }}
-            >
-              <option value="option1">Year</option>
-              <option value="option2">Month</option>
-              <option value="option3">Day</option>
-            </Select>
-          </Flex>
-          <Flex as={GridItem}>
-            <ApexCharts
-              options={options}
-              series={[44, 55, 41, 17, 15]}
-              type="donut"
-            />
-          </Flex>
-        </Box>
-      </Box>
-    </Flex>
+            <option value="option1">Year</option>
+            <option value="option2">Month</option>
+            <option value="option3">Day</option>
+          </Select>
+        </Flex>
+        <Flex as={GridItem} area="main">
+          <ApexCharts
+            options={options}
+            series={[44, 55, 41, 17, 15]}
+            type="donut"
+          />
+        </Flex>
+      </Flex>
+    </Box>
   );
 }
