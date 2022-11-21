@@ -1,5 +1,7 @@
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Flex,
   Table,
   TableCaption,
@@ -7,7 +9,6 @@ import {
   Tbody,
   Td,
   Text,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -33,45 +34,51 @@ export function Tasks() {
         bgGradient="linear(to-t, gray.900, gray.600)"
       >
         <Flex direction="column" w="100%" maxW="1120px" mx="auto" px="6">
-          <Text color="gray.500" fontSize="2xl" fontWeight="bold" mb="8">
-            MyTasks
-          </Text>
+          <Button
+            as="a"
+            w={["sm", "9rem"]}
+            colorScheme="facebook"
+            size="lg"
+            mt="6"
+            mb="8"
+            leftIcon={<AddIcon />}
+            href="/tasks/create"
+          >
+            <Text fontSize="xl" fontWeight="bold">
+              New Task
+            </Text>
+          </Button>
           <TableContainer bg="gray.800" borderRadius="8" boxShadow="lg" p="4">
             <Table variant="striped" colorScheme="blackAlpha">
-              <TableCaption placement="top">
-                Imperial to metric conversion factors
-              </TableCaption>
+              <TableCaption placement="top">My Tasks</TableCaption>
               <Thead>
                 <Tr>
-                  <Th>To convert</Th>
-                  <Th>into</Th>
-                  <Th isNumeric>multiply by</Th>
+                  <Th>Project</Th>
+                  <Th>Task</Th>
+                  <Th>Time</Th>
+                  <Th>Action</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td isNumeric>25.4</Td>
+                  <Td>AppTasks</Td>
+                  <Td>cria tela Dashboard</Td>
+                  <Td>1h</Td>
+                  <Td>Edit | Delet</Td>
                 </Tr>
                 <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td isNumeric>30.48</Td>
+                  <Td>Foguete</Td>
+                  <Td>CRUD</Td>
+                  <Td>12h</Td>
+                  <Td>Edit | Delet</Td>
                 </Tr>
                 <Tr>
-                  <Td>yards</Td>
-                  <Td>metres (m)</Td>
-                  <Td isNumeric>0.91444</Td>
+                  <Td>AppTasks</Td>
+                  <Td>integração</Td>
+                  <Td>6h</Td>
+                  <Td>Edit | Delet</Td>
                 </Tr>
               </Tbody>
-              <Tfoot>
-                <Tr>
-                  <Th>To convert</Th>
-                  <Th>into</Th>
-                  <Th isNumeric>multiply by</Th>
-                </Tr>
-              </Tfoot>
             </Table>
           </TableContainer>
         </Flex>
