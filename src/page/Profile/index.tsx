@@ -3,9 +3,9 @@ import { useEffect } from "react";
 
 import { Sidebar } from "../../components/Sidebar";
 
-export function Tasks() {
+export function Profile() {
   useEffect(() => {
-    document.title = "AppTasks ✔️️ |  Tasks";
+    document.title = "AppTasks ✔️️ |  Profile";
   }, []);
 
   return (
@@ -19,7 +19,7 @@ export function Tasks() {
         alignItems="center"
         bgGradient="linear(to-t, gray.900, gray.600)"
       >
-        <Text color="gray.500">MyTasks</Text>
+        <Text color="gray.500">Profile</Text>
       </Box>
     </>
   );
