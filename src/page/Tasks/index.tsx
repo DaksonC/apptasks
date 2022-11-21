@@ -1,4 +1,4 @@
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -64,19 +64,55 @@ export function Tasks() {
                   <Td>AppTasks</Td>
                   <Td>cria tela Dashboard</Td>
                   <Td>1h</Td>
-                  <Td>Edit | Delet</Td>
+                  <Td>
+                    <EditIcon
+                      color="blue.500"
+                      cursor="pointer"
+                      mr="8"
+                      transition="color 0.2s"
+                    />
+                    <DeleteIcon
+                      color="red.500"
+                      cursor="pointer"
+                      transition="all 0.2s"
+                    />
+                  </Td>
                 </Tr>
                 <Tr>
                   <Td>Foguete</Td>
                   <Td>CRUD</Td>
                   <Td>12h</Td>
-                  <Td>Edit | Delet</Td>
+                  <Td>
+                    <EditIcon
+                      color="blue.500"
+                      cursor="pointer"
+                      mr="8"
+                      transition="color 0.2s"
+                    />
+                    <DeleteIcon
+                      color="red.500"
+                      cursor="pointer"
+                      transition="all 0.2s"
+                    />
+                  </Td>
                 </Tr>
                 <Tr>
                   <Td>AppTasks</Td>
                   <Td>integração</Td>
                   <Td>6h</Td>
-                  <Td>Edit | Delet</Td>
+                  <Td>
+                    <EditIcon
+                      color="blue.500"
+                      cursor="pointer"
+                      mr="8"
+                      transition="color 0.2s"
+                    />
+                    <DeleteIcon
+                      color="red.500"
+                      cursor="pointer"
+                      transition="all 0.2s"
+                    />
+                  </Td>
                 </Tr>
               </Tbody>
             </Table>
