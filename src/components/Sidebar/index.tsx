@@ -19,7 +19,7 @@ import { NavLink as RouterLink } from "react-router-dom";
 
 import SearchBox from "../SearchBox";
 
-const Links = ["Dashboard", "My Tasks", "Profile"];
+const Links = ["Dashboard", "Tasks", "Profile"];
 
 interface INavLinkProps {
   children: ReactNode;

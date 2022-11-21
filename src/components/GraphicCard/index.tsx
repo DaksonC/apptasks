@@ -106,14 +106,15 @@ export function GraphicCard() {
       <Flex direction="column">
         <Flex direction="row" justifyContent="space-between">
           <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
-            Total Tasks
+            Total Tasks:
+            <Text color="gray.500">783</Text>
           </Text>
           <Select
             w="50%"
             placeholder="Select Period"
             fontSize={["md", "2xs"]}
             color="gray.100"
-            bg="gray.700"
+            bgColor="gray.800"
             borderColor="gray.700"
             _hover={{
               borderColor: "gray.500",
