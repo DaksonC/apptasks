@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 
+import { Footer } from "../../components/Footer";
 import { Sidebar } from "../../components/Sidebar";
 
 export function Tasks() {
@@ -119,6 +120,7 @@ export function Tasks() {
           </TableContainer>
         </Flex>
       </Box>
+      <Footer />
     </>
   );
 }

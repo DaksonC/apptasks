@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { useEffect } from "react";
 
+import { Footer } from "../../components/Footer";
 import { GraphicCard } from "../../components/GraphicCard";
 import { Sidebar } from "../../components/Sidebar";
 
@@ -22,6 +23,7 @@ export function Dashboard() {
       >
         <GraphicCard />
       </Box>
+      <Footer />
     </>
   );
 }

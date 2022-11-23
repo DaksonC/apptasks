@@ -3,14 +3,13 @@ import {
   Box,
   Button,
   Flex,
-  Grid,
-  GridItem,
   Text,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 
+import { Footer } from "../../components/Footer";
 import { Sidebar } from "../../components/Sidebar";
 
 export function Profile() {
@@ -88,6 +87,7 @@ export function Profile() {
           </Wrap>
         </Box>
       </Box>
+      <Footer />
     </>
   );
 }
