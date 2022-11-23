@@ -13,6 +13,7 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
@@ -92,11 +93,20 @@ export function Sidebar() {
               variant="link"
               cursor="pointer"
               minW={0}
+              _hover={{
+                textDecoration: "none",
+              }}
             >
-              <Avatar
-                size="sm"
-                src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-              />
+              <Flex direction="row" justifyContent="center" alignItems="center">
+                <Text fontSize="sm" fontWeight="bold" color="blue.500">
+                  Dani Abrahmov
+                </Text>
+                <Avatar
+                  size="sm"
+                  ml={8}
+                  src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                />
+              </Flex>
             </MenuButton>
           </Menu>
         </Flex>
