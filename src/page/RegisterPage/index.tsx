@@ -129,7 +129,7 @@ export function RegisterPage() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <Select placeholder="Departamento" marginBottom={4}>
+              <Select placeholder="Departament" marginBottom={4}>
                 <option value="option1">Development</option>
                 <option value="option2">AI</option>
                 <option value="option3">RPA</option>
