@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { Footer } from "../../components/Footer";
 import { GraphicCard } from "../../components/GraphicCard";
-import { Sidebar } from "../../components/Sidebar";
+import { Header } from "../../components/Header";
 
 export function Dashboard() {
   useEffect(() => {
@@ -12,7 +12,7 @@ export function Dashboard() {
 
   return (
     <>
-      <Sidebar />
+      <Header />
       <Box
         w="100%"
         h="100vh"

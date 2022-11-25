@@ -23,7 +23,7 @@ import {
 import { useEffect } from "react";
 
 import { Footer } from "../../components/Footer";
-import { Sidebar } from "../../components/Sidebar";
+import { Header } from "../../components/Header";
 
 export function Profile() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,7 +34,7 @@ export function Profile() {
 
   return (
     <>
-      <Sidebar />
+      <Header />
       <Box
         w="100%"
         h="100vh"
@@ -110,6 +110,9 @@ export function Profile() {
                       alignItems="center"
                       flexDirection="column"
                     >
+                      <Text fontSize="4xl" color="gray.700" m={4}>
+                        Edit Profile
+                      </Text>
                       <Avatar
                         size="4xl"
                         name="Dani Abrahmov"

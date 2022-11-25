@@ -27,7 +27,7 @@ import {
 import { useEffect } from "react";
 
 import { Footer } from "../../components/Footer";
-import { Sidebar } from "../../components/Sidebar";
+import { Header } from "../../components/Header";
 
 export function Tasks() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,7 +38,7 @@ export function Tasks() {
 
   return (
     <>
-      <Sidebar />
+      <Header />
       <Box
         w="100%"
         h="100vh"
