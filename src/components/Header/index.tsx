@@ -62,12 +62,12 @@ export function Header() {
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <IconButton
           backgroundColor="transparent !important"
-          size="md"
+          size="lg"
           icon={
             isOpen ? (
-              <CloseIcon color="blue.500" />
+              <CloseIcon color="gray.700" />
             ) : (
-              <HamburgerIcon color="blue.500" />
+              <HamburgerIcon color="gray.700" />
             )
           }
           aria-label="Open Menu"
@@ -98,9 +98,11 @@ export function Header() {
               }}
             >
               <Flex direction="row" justifyContent="center" alignItems="center">
-                <Text fontSize="sm" fontWeight="bold" color="blue.500">
-                  Dani Abrahmov
-                </Text>
+                <Flex display={{ base: "none", md: "flex" }}>
+                  <Text fontSize="2xs" fontWeight="bold" color="blue.500">
+                    Dani Abrahmov
+                  </Text>
+                </Flex>
                 <Avatar
                   size="sm"
                   ml={4}
