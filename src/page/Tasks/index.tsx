@@ -24,15 +24,41 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
+import api from "../../api";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
+import { ITasks } from "../../interfaces";
 
 export function Tasks() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [tasks, setTasks] = useState<ITasks[]>([]);
+
+  const getAllTasks = async (): Promise<void | Error> => {
+    try {
+      const response = await api.get("/tasks");
+      setTasks(response.data);
+      // console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const creatDate = tasks.map((task) => task.created_at);
+  const finishedDate = tasks.map((task) => task.finished_at);
+  const date = new Date(String(creatDate)).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  const dateDiff =
+    new Date(String(finishedDate)).getTime() -
+    new Date(String(creatDate)).getTime();
+  const hourDiff = Math.floor(dateDiff / (1000 * 60 * 60));
 
   useEffect(() => {
+    getAllTasks();
     document.title = "AppTasks ✔️️ |  Tasks";
   }, []);
 
@@ -111,65 +137,37 @@ export function Tasks() {
                 <Tr>
                   <Th>Project</Th>
                   <Th>Task</Th>
-                  <Th>Time</Th>
+                  <Th>Create Date</Th>
+                  <Th>Estimated time</Th>
                   <Th>Action</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>AppTasks</Td>
-                  <Td>cria tela Dashboard</Td>
-                  <Td>1h</Td>
-                  <Td>
-                    <EditIcon
-                      color="blue.500"
-                      cursor="pointer"
-                      mr="8"
-                      transition="color 0.2s"
-                    />
-                    <DeleteIcon
-                      color="red.500"
-                      cursor="pointer"
-                      transition="all 0.2s"
-                    />
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>Foguete</Td>
-                  <Td>CRUD</Td>
-                  <Td>12h</Td>
-                  <Td>
-                    <EditIcon
-                      color="blue.500"
-                      cursor="pointer"
-                      mr="8"
-                      transition="color 0.2s"
-                    />
-                    <DeleteIcon
-                      color="red.500"
-                      cursor="pointer"
-                      transition="all 0.2s"
-                    />
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>AppTasks</Td>
-                  <Td>integração</Td>
-                  <Td>6h</Td>
-                  <Td>
-                    <EditIcon
-                      color="blue.500"
-                      cursor="pointer"
-                      mr="8"
-                      transition="color 0.2s"
-                    />
-                    <DeleteIcon
-                      color="red.500"
-                      cursor="pointer"
-                      transition="all 0.2s"
-                    />
-                  </Td>
-                </Tr>
+                {tasks.map((task) => (
+                  <Tr key={task.user_id}>
+                    <Td>{task.title}</Td>
+                    <Td>{task.description}</Td>
+                    <Td>{date}</Td>
+                    {hourDiff > 1 ? (
+                      <Td>{hourDiff} hours</Td>
+                    ) : (
+                      <Td>{hourDiff} hour</Td>
+                    )}
+                    <Td>
+                      <EditIcon
+                        color="blue.500"
+                        cursor="pointer"
+                        mr="8"
+                        transition="color 0.2s"
+                      />
+                      <DeleteIcon
+                        color="red.500"
+                        cursor="pointer"
+                        transition="all 0.2s"
+                      />
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>
