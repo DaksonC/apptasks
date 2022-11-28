@@ -1,4 +1,4 @@
-import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -30,6 +30,8 @@ import { useEffect, useState } from "react";
 import api from "../../api";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
+import { ModalDeleteTask } from "../../components/ModalDeleteTask";
+import { ModalEditTask } from "../../components/ModalEditTask";
 import { ITasks } from "../../interfaces";
 
 export function Tasks() {
@@ -161,17 +163,8 @@ export function Tasks() {
                         <Td>{hourDiff} hour</Td>
                       )}
                       <Td>
-                        <EditIcon
-                          color="blue.500"
-                          cursor="pointer"
-                          mr="8"
-                          transition="color 0.2s"
-                        />
-                        <DeleteIcon
-                          color="red.500"
-                          cursor="pointer"
-                          transition="all 0.2s"
-                        />
+                        <ModalEditTask isOpenModal />
+                        <ModalDeleteTask isOpenModal />
                       </Td>
                     </Tr>
                   ))}

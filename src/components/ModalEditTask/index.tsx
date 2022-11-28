@@ -14,17 +14,29 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-export function ModalEditTask() {
+interface IModalEditTaskProps {
+  isOpenModal: boolean;
+}
+
+export function ModalEditTask({ isOpenModal }: IModalEditTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  function handleOpenModal() {
+    if (isOpenModal) {
+      onOpen();
+    }
+  }
+
   return (
     <>
-      <Button onClick={onOpen}>
-        <EditIcon
-          color="blue.500"
-          cursor="pointer"
-          mr="8"
-          transition="color 0.2s"
-        />
+      <Button
+        onClick={() => handleOpenModal()}
+        bgColor="transparent"
+        _hover={{
+          bgColor: "gray.700",
+        }}
+      >
+        <EditIcon color="blue.500" cursor="pointer" transition="color 0.2s" />
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

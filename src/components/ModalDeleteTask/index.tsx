@@ -1,9 +1,6 @@
-import { EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import {
   Button,
-  FormControl,
-  FormLabel,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,20 +8,33 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 
-export function ModalDeleteTask() {
+interface IModalEditTaskProps {
+  isOpenModal: boolean;
+}
+
+export function ModalDeleteTask({ isOpenModal }: IModalEditTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  function handleOpenModal() {
+    if (isOpenModal) {
+      onOpen();
+    }
+  }
+
   return (
     <>
-      <Button onClick={onOpen}>
-        <EditIcon
-          color="blue.500"
-          cursor="pointer"
-          mr="8"
-          transition="color 0.2s"
-        />
+      <Button
+        onClick={() => handleOpenModal()}
+        bgColor="transparent"
+        _hover={{
+          bgColor: "gray.700",
+        }}
+      >
+        <DeleteIcon color="red.500" cursor="pointer" transition="color 0.2s" />
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -32,28 +42,9 @@ export function ModalDeleteTask() {
           <ModalHeader color="gray.700">New Task</ModalHeader>
           <ModalCloseButton color="gray.700" />
           <ModalBody>
-            <FormControl mb={4}>
-              <Input placeholder="Project" color="gray.800" />
-            </FormControl>
-            <FormControl mb={4}>
-              <Input placeholder="Task" color="gray.800" />
-            </FormControl>
-            <FormControl>
-              <FormLabel color="gray.700">Estimated time</FormLabel>
-              <Input
-                htmlSize={8}
-                placeholder="start"
-                width="auto"
-                mr={8}
-                color="gray.800"
-              />
-              <Input
-                htmlSize={8}
-                placeholder="final"
-                width="auto"
-                color="gray.800"
-              />
-            </FormControl>
+            <Text fontSize="xl" fontWeight="bold" color="gray.500">
+              Are you sure you want to delete this task?
+            </Text>
           </ModalBody>
           <ModalFooter>
             <Button
@@ -65,7 +56,7 @@ export function ModalDeleteTask() {
             >
               Close
             </Button>
-            <Button colorScheme="facebook">Save</Button>
+            <Button colorScheme="red">Delete</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
