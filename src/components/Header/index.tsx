@@ -14,8 +14,9 @@ import {
   useColorModeValue,
   Stack,
   Text,
+  Spinner,
 } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
 
 import SearchBox from "../SearchBox";
@@ -50,6 +51,16 @@ function NavLink({ children }: INavLinkProps) {
 
 export function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    try {
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <Box
@@ -97,18 +108,26 @@ export function Header() {
                 textDecoration: "none",
               }}
             >
-              <Flex direction="row" justifyContent="center" alignItems="center">
-                <Flex display={{ base: "none", md: "flex" }}>
-                  <Text fontSize="2xs" fontWeight="bold" color="blue.500">
-                    Dani Abrahmov
-                  </Text>
+              {isLoading ? (
+                <Spinner size="md" speed="0.7s" />
+              ) : (
+                <Flex
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Flex display={{ base: "none", md: "flex" }}>
+                    <Text fontSize="2xs" fontWeight="bold" color="blue.500">
+                      Dani Abrahmov
+                    </Text>
+                  </Flex>
+                  <Avatar
+                    size="sm"
+                    ml={4}
+                    src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                  />
                 </Flex>
-                <Avatar
-                  size="sm"
-                  ml={4}
-                  src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                />
-              </Flex>
+              )}
             </MenuButton>
           </Menu>
         </Flex>
