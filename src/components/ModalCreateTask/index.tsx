@@ -1,4 +1,4 @@
-import { EditIcon } from "@chakra-ui/icons";
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Button,
   FormControl,
@@ -11,14 +11,15 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 
-interface IModalEditTaskProps {
+interface IModalCreateTaskProps {
   isOpenModal: boolean;
 }
 
-export function ModalEditTask({ isOpenModal }: IModalEditTaskProps) {
+export function ModalCreateTask({ isOpenModal }: IModalCreateTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   function handleOpenModal() {
@@ -30,18 +31,22 @@ export function ModalEditTask({ isOpenModal }: IModalEditTaskProps) {
   return (
     <>
       <Button
+        w={["sm", "9rem"]}
+        colorScheme="facebook"
+        size="lg"
+        mt="6"
+        mb="8"
+        leftIcon={<AddIcon />}
         onClick={() => handleOpenModal()}
-        bgColor="transparent"
-        _hover={{
-          bgColor: "gray.700",
-        }}
       >
-        <EditIcon color="blue.500" cursor="pointer" transition="color 0.2s" />
+        <Text fontSize="xl" fontWeight="bold">
+          New Task
+        </Text>
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader color="gray.700">Edit Task</ModalHeader>
+          <ModalHeader color="gray.700">New Task</ModalHeader>
           <ModalCloseButton color="gray.700" />
           <ModalBody>
             <FormControl mb={4}>

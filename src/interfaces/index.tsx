@@ -11,6 +11,7 @@ export interface IUsers {
 }
 
 export interface ITasks {
+  data(data: any): unknown;
   user_id: number;
   title: string;
   description: string;

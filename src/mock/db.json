@@ -3,8 +3,14 @@
     {
       "id": 1,
       "name": "John Doe",
-      "email": "teste@teste.co",
+      "email": "teste@teste.com",
       "department": "IT"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "teste@teste.com",
+      "department": "IA"
     }
   ],
   "tasks": [

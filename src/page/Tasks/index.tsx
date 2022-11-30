@@ -1,49 +1,35 @@
-import { AddIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Flex,
-  FormControl,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Spinner,
   Table,
   TableCaption,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import api from "../../api";
+import { getTasks } from "../../api/tasks";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
+import { ModalCreateTask } from "../../components/ModalCreateTask";
 import { ModalDeleteTask } from "../../components/ModalDeleteTask";
 import { ModalEditTask } from "../../components/ModalEditTask";
 import { ITasks } from "../../interfaces";
 
 export function Tasks() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
   const [tasks, setTasks] = useState<ITasks[]>([]);
 
   const getAllTasks = async (): Promise<void | Error> => {
     setIsLoading(true);
     try {
-      const response = await api.get("/tasks");
-      setTasks(response.data);
+      const response = await getTasks();
+      setTasks(response);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -82,63 +68,7 @@ export function Tasks() {
           <Spinner size="xl" speed="0.7s" />
         ) : (
           <Flex direction="column" w="100%" maxW="1120px" mx="auto" px="6">
-            <Button
-              w={["sm", "9rem"]}
-              colorScheme="facebook"
-              size="lg"
-              mt="6"
-              mb="8"
-              leftIcon={<AddIcon />}
-              onClick={onOpen}
-            >
-              <Text fontSize="xl" fontWeight="bold">
-                New Task
-              </Text>
-            </Button>
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader color="gray.700">New Task</ModalHeader>
-                <ModalCloseButton color="gray.700" />
-                <ModalBody>
-                  <FormControl mb={4}>
-                    <Input placeholder="Project" color="gray.800" />
-                  </FormControl>
-                  <FormControl mb={4}>
-                    <Input placeholder="Task" color="gray.800" />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel color="gray.700">Estimated time</FormLabel>
-                    <Input
-                      htmlSize={8}
-                      placeholder="start"
-                      width="auto"
-                      mr={8}
-                      color="gray.800"
-                    />
-                    <Input
-                      htmlSize={8}
-                      placeholder="final"
-                      width="auto"
-                      color="gray.800"
-                    />
-                  </FormControl>
-                </ModalBody>
-                <ModalFooter>
-                  <Button
-                    mr={3}
-                    variant="ghost"
-                    color="gray.700"
-                    _hover={{ bg: "gray.300", color: "gray.700" }}
-                    onClick={onClose}
-                  >
-                    Close
-                  </Button>
-                  <Button colorScheme="facebook">Save</Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-
+            <ModalCreateTask isOpenModal />
             <TableContainer bg="gray.800" borderRadius="8" boxShadow="lg" p="4">
               <Table variant="striped" colorScheme="blackAlpha">
                 <TableCaption placement="top">My Tasks</TableCaption>
