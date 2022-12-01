@@ -1,4 +1,5 @@
 import api from ".";
+import { ITask } from "../components/ModalCreateTask";
 import { ITasks } from "../interfaces/index";
 
 export const getTasks = async () => {
@@ -7,7 +8,7 @@ export const getTasks = async () => {
   return data;
 };
 
-export const createTask = async (body: ITasks) => {
+export const createTask = async (body: ITask) => {
   const { data } = await api.post("/tasks", body);
 
   return data;

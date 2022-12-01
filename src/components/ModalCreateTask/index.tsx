@@ -14,18 +14,46 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useState } from "react";
+
+// import api from "../../api";
+import { createTask } from "../../api/tasks";
 
 interface IModalCreateTaskProps {
   isOpenModal: boolean;
 }
 
+export interface ITask {
+  title: string;
+  description: string;
+}
+
 export function ModalCreateTask({ isOpenModal }: IModalCreateTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [model, setModal] = useState<ITask>({
+    title: "",
+    description: "",
+  });
 
   function handleOpenModal() {
     if (isOpenModal) {
       onOpen();
     }
+  }
+
+  function updateModal(e: React.ChangeEvent<HTMLInputElement>) {
+    setModal({
+      ...model,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  async function onSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const response = await createTask(model);
+    console.log(response);
+    window.location.reload();
+    onClose();
   }
 
   return (
@@ -46,44 +74,60 @@ export function ModalCreateTask({ isOpenModal }: IModalCreateTaskProps) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader color="gray.700">New Task</ModalHeader>
-          <ModalCloseButton color="gray.700" />
-          <ModalBody>
-            <FormControl mb={4}>
-              <Input placeholder="Project" color="gray.800" />
-            </FormControl>
-            <FormControl mb={4}>
-              <Input placeholder="Task" color="gray.800" />
-            </FormControl>
-            <FormControl>
-              <FormLabel color="gray.700">Estimated time</FormLabel>
-              <Input
-                htmlSize={8}
-                placeholder="start"
-                width="auto"
-                mr={8}
-                color="gray.800"
-              />
-              <Input
-                htmlSize={8}
-                placeholder="final"
-                width="auto"
-                color="gray.800"
-              />
-            </FormControl>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              mr={3}
-              variant="ghost"
-              color="gray.700"
-              _hover={{ bg: "gray.300", color: "gray.700" }}
-              onClick={onClose}
-            >
-              Close
-            </Button>
-            <Button colorScheme="facebook">Save</Button>
-          </ModalFooter>
+          <form onSubmit={onSubmit}>
+            <ModalHeader color="gray.700">New Task</ModalHeader>
+            <ModalCloseButton color="gray.700" />
+            <ModalBody>
+              <FormControl mb={4}>
+                <Input
+                  placeholder="Project"
+                  color="gray.800"
+                  type="text"
+                  name="title"
+                  onChange={(e) => updateModal(e)}
+                />
+              </FormControl>
+              <FormControl mb={4}>
+                <Input
+                  placeholder="Task"
+                  color="gray.800"
+                  type="text"
+                  name="description"
+                  onChange={(e) => updateModal(e)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel color="gray.700">Estimated time</FormLabel>
+                <Input
+                  htmlSize={8}
+                  placeholder="start"
+                  width="auto"
+                  mr={8}
+                  color="gray.800"
+                />
+                <Input
+                  htmlSize={8}
+                  placeholder="final"
+                  width="auto"
+                  color="gray.800"
+                />
+              </FormControl>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                mr={3}
+                variant="ghost"
+                color="gray.700"
+                _hover={{ bg: "gray.300", color: "gray.700" }}
+                onClick={onClose}
+              >
+                Close
+              </Button>
+              <Button colorScheme="facebook" type="submit">
+                Save
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </>

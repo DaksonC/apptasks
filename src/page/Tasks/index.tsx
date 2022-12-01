@@ -1,6 +1,7 @@
 import {
   Box,
   Flex,
+  Highlight,
   Spinner,
   Table,
   TableCaption,
@@ -36,18 +37,6 @@ export function Tasks() {
     }
   };
 
-  const creatDate = tasks.map((task) => task.created_at);
-  const finishedDate = tasks.map((task) => task.finished_at);
-  const date = new Date(String(creatDate)).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-  const dateDiff =
-    new Date(String(finishedDate)).getTime() -
-    new Date(String(creatDate)).getTime();
-  const hourDiff = Math.floor(dateDiff / (1000 * 60 * 60));
-
   useEffect(() => {
     getAllTasks();
     document.title = "AppTasks ✔️️ |  Tasks";
@@ -78,20 +67,31 @@ export function Tasks() {
                     <Th>Task</Th>
                     <Th>Create Date</Th>
                     <Th>Estimated time</Th>
+                    <Th>Status</Th>
                     <Th>Action</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   {tasks.map((task) => (
-                    <Tr key={task.user_id}>
+                    <Tr key={task.id}>
                       <Td>{task.title}</Td>
                       <Td>{task.description}</Td>
-                      <Td>{date}</Td>
-                      {hourDiff > 1 ? (
-                        <Td>{hourDiff} hours</Td>
-                      ) : (
-                        <Td>{hourDiff} hour</Td>
-                      )}
+                      <Td>01/12/2022</Td>
+                      <Td>5 hours</Td>
+                      <Td>
+                        <Highlight
+                          query="In Progress"
+                          styles={{
+                            px: "2",
+                            py: "1",
+                            rounded: "full",
+                            bg: "yellow.100",
+                            color: "yellow.800",
+                          }}
+                        >
+                          In Progress
+                        </Highlight>
+                      </Td>
                       <Td>
                         <ModalEditTask isOpenModal />
                         <ModalDeleteTask isOpenModal />
