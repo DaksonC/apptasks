@@ -11,18 +11,35 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { deleteTask } from "../../api/tasks";
 
 interface IModalEditTaskProps {
   isOpenModal: boolean;
+  taskId: number;
 }
 
-export function ModalDeleteTask({ isOpenModal }: IModalEditTaskProps) {
+export function ModalDeleteTask({ taskId, isOpenModal }: IModalEditTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const navigate = useNavigate();
+
+  const { id } = useParams();
 
   function handleOpenModal() {
     if (isOpenModal) {
+      navigate(`/tasks/${taskId}`);
       onOpen();
     }
+  }
+
+  async function handleClickDelete() {
+    const response = await deleteTask(String(id));
+    navigate("/tasks");
+    window.location.reload();
+    onClose();
+    console.log(response);
   }
 
   return (
@@ -56,7 +73,9 @@ export function ModalDeleteTask({ isOpenModal }: IModalEditTaskProps) {
             >
               Close
             </Button>
-            <Button colorScheme="red">Delete</Button>
+            <Button colorScheme="red" onClick={() => handleClickDelete()}>
+              Delete
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

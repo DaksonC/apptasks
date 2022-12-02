@@ -40,12 +40,14 @@ export function ModalEditTask({ isOpenModal, taskId }: IModalEditTaskProps) {
 
   useEffect(() => {
     (async () => {
-      const response = await getTaskById(String(id));
-      setTask({
-        title: response.title,
-        description: response.description,
-      });
-      // console.log(response);
+      if (id !== undefined) {
+        const response = await getTaskById(String(id));
+        setTask({
+          title: response.title,
+          description: response.description,
+        });
+        // console.log(response);
+      }
     })();
   }, [id]);
 

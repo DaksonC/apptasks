@@ -26,8 +26,8 @@ export const updateTask = async (id: string, body: ITask) => {
   return data;
 };
 
-// export const deleteProduct = async (id: number) => {
-//   const { data } = await axiosInstance.delete(`/product/${id}`);
+export const deleteTask = async (id: string) => {
+  const { data } = await api.delete(`/tasks/${id}`);
 
-//   return data;
-// };
+  return data;
+};

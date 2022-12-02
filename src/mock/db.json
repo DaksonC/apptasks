@@ -16,23 +16,13 @@
   "tasks": [
     {
       "title": "AppTasks",
-      "description": "criar CRUDs",
-      "id": 1
-    },
-    {
-      "title": "AppTasks",
       "description": "cria integração",
       "id": 2
     },
     {
-      "title": "AppTask",
-      "description": "CRUD Back End",
+      "title": "AppTasks",
+      "description": "cria autenticação",
       "id": 3
-    },
-    {
-      "title": "Cintia",
-      "description": "coral IPI",
-      "id": 4
     }
   ]
 }
