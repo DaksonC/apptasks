@@ -2,7 +2,6 @@ import { EditIcon } from "@chakra-ui/icons";
 import {
   Button,
   FormControl,
-  FormLabel,
   Input,
   Modal,
   ModalBody,
@@ -13,17 +12,55 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { getTaskById, updateTask } from "../../api/tasks";
 
 interface IModalEditTaskProps {
   isOpenModal: boolean;
+  taskId: number;
 }
 
-export function ModalEditTask({ isOpenModal }: IModalEditTaskProps) {
+interface ITask {
+  title: string;
+  description: string;
+}
+
+export function ModalEditTask({ isOpenModal, taskId }: IModalEditTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [task, setTask] = useState<ITask>({
+    title: "",
+    description: "",
+  });
+
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      const response = await getTaskById(String(id));
+      setTask({
+        title: response.title,
+        description: response.description,
+      });
+      // console.log(response);
+    })();
+  }, [id]);
 
   function handleOpenModal() {
     if (isOpenModal) {
+      navigate(`/tasks/${taskId}`);
       onOpen();
+    }
+  }
+
+  async function handleClickSave() {
+    if (id !== undefined) {
+      await updateTask(String(id), task);
+      window.location.reload();
+      onClose();
     }
   }
 
@@ -43,27 +80,26 @@ export function ModalEditTask({ isOpenModal }: IModalEditTaskProps) {
         <ModalContent>
           <ModalHeader color="gray.700">Edit Task</ModalHeader>
           <ModalCloseButton color="gray.700" />
+
           <ModalBody>
             <FormControl mb={4}>
-              <Input placeholder="Project" color="gray.800" />
+              <Input
+                placeholder="Project"
+                color="gray.800"
+                name="title"
+                value={task.title}
+                onChange={(e) => setTask({ ...task, title: e.target.value })}
+              />
             </FormControl>
             <FormControl mb={4}>
-              <Input placeholder="Task" color="gray.800" />
-            </FormControl>
-            <FormControl>
-              <FormLabel color="gray.700">Estimated time</FormLabel>
               <Input
-                htmlSize={8}
-                placeholder="start"
-                width="auto"
-                mr={8}
+                placeholder="Task"
                 color="gray.800"
-              />
-              <Input
-                htmlSize={8}
-                placeholder="final"
-                width="auto"
-                color="gray.800"
+                name="description"
+                value={task.description}
+                onChange={(e) =>
+                  setTask({ ...task, description: e.target.value })
+                }
               />
             </FormControl>
           </ModalBody>
@@ -77,7 +113,9 @@ export function ModalEditTask({ isOpenModal }: IModalEditTaskProps) {
             >
               Close
             </Button>
-            <Button colorScheme="facebook">Save</Button>
+            <Button colorScheme="facebook" onClick={() => handleClickSave()}>
+              Save
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

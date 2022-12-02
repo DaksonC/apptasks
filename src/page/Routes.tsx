@@ -16,6 +16,7 @@ export function MainRoutes() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/tasks" element={<Tasks />} />
+      <Route path="/tasks/:id" element={<Tasks />} />
       <Route path="/profile" element={<Profile />} />
 
       <Route path="*" element={<NotFound />} />

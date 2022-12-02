@@ -14,11 +14,17 @@ export const createTask = async (body: ITask) => {
   return data;
 };
 
-// export const toggleStoreSeason = async (toggleSeason: boolean) => {
-//   const { data } = await axiosInstance.patch('/store/season', { toggleSeason });
+export const getTaskById = async (id: string) => {
+  const { data } = await api.get(`/tasks/${id}`);
 
-//   return data;
-// };
+  return data;
+};
+
+export const updateTask = async (id: string, body: ITask) => {
+  const { data } = await api.put(`/tasks/${id}`, body);
+
+  return data;
+};
 
 // export const deleteProduct = async (id: number) => {
 //   const { data } = await axiosInstance.delete(`/product/${id}`);

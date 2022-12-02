@@ -93,7 +93,7 @@ export function Tasks() {
                         </Highlight>
                       </Td>
                       <Td>
-                        <ModalEditTask isOpenModal />
+                        <ModalEditTask isOpenModal taskId={task.id} />
                         <ModalDeleteTask isOpenModal />
                       </Td>
                     </Tr>
