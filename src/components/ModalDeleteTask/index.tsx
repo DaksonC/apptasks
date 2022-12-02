@@ -56,7 +56,7 @@ export function ModalDeleteTask({ taskId, isOpenModal }: IModalEditTaskProps) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader color="gray.700">New Task</ModalHeader>
+          <ModalHeader color="gray.700">Delete Task</ModalHeader>
           <ModalCloseButton color="gray.700" />
           <ModalBody>
             <Text fontSize="xl" fontWeight="bold" color="gray.500">

@@ -105,10 +105,21 @@ export function GraphicCard() {
     >
       <Flex direction="column">
         <Flex direction="row" justifyContent="space-between">
-          <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
-            Total Tasks:
-            <Text color="gray.500">783</Text>
-          </Text>
+          <Box
+            display="flex"
+            justifyContent="flex-start"
+            alignItems="end"
+            w="100%"
+            h="100%"
+            flexDirection="row"
+          >
+            <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
+              Total Tasks:
+            </Text>
+            <Text color="gray.500" m={4} fontSize="2xl">
+              783
+            </Text>
+          </Box>
           <Select
             w="50%"
             placeholder="Select Period"
