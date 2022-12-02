@@ -2,7 +2,6 @@ import { AddIcon } from "@chakra-ui/icons";
 import {
   Button,
   FormControl,
-  FormLabel,
   Input,
   Modal,
   ModalBody,
@@ -80,7 +79,7 @@ export function ModalCreateTask({ isOpenModal }: IModalCreateTaskProps) {
             <ModalBody>
               <FormControl mb={4}>
                 <Input
-                  placeholder="Project"
+                  placeholder="Project name"
                   color="gray.800"
                   type="text"
                   name="title"
@@ -89,27 +88,13 @@ export function ModalCreateTask({ isOpenModal }: IModalCreateTaskProps) {
               </FormControl>
               <FormControl mb={4}>
                 <Input
-                  placeholder="Task"
+                  as="textarea"
+                  rows={4}
+                  placeholder="Description task"
                   color="gray.800"
                   type="text"
                   name="description"
                   onChange={(e) => updateModal(e)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel color="gray.700">Estimated time</FormLabel>
-                <Input
-                  htmlSize={8}
-                  placeholder="start"
-                  width="auto"
-                  mr={8}
-                  color="gray.800"
-                />
-                <Input
-                  htmlSize={8}
-                  placeholder="final"
-                  width="auto"
-                  color="gray.800"
                 />
               </FormControl>
             </ModalBody>

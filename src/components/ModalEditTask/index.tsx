@@ -86,7 +86,7 @@ export function ModalEditTask({ isOpenModal, taskId }: IModalEditTaskProps) {
           <ModalBody>
             <FormControl mb={4}>
               <Input
-                placeholder="Project"
+                placeholder="Project name"
                 color="gray.800"
                 name="title"
                 value={task.title}
@@ -95,7 +95,9 @@ export function ModalEditTask({ isOpenModal, taskId }: IModalEditTaskProps) {
             </FormControl>
             <FormControl mb={4}>
               <Input
-                placeholder="Task"
+                as="textarea"
+                rows={4}
+                placeholder="Description task"
                 color="gray.800"
                 name="description"
                 value={task.description}
