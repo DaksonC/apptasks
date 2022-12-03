@@ -49,7 +49,17 @@ export function Users() {
             boxShadow="lg"
             p="4"
             mt={12}
-            overflowY="auto"
+            overflowY="scroll"
+            sx={{
+              "::-webkit-scrollbar": {
+                width: "4px",
+                backgroundColor: "gray.700",
+              },
+              "::-webkit-scrollbar-thumb": {
+                backgroundColor: "gray.500",
+                borderRadius: "8px",
+              },
+            }}
           >
             <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
               <TableCaption placement="top">User list</TableCaption>

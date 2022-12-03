@@ -73,7 +73,17 @@ export function Tasks() {
               borderRadius="8"
               boxShadow="lg"
               p="4"
-              overflowY="auto"
+              overflowY="scroll"
+              sx={{
+                "::-webkit-scrollbar": {
+                  width: "4px",
+                  backgroundColor: "gray.700",
+                },
+                "::-webkit-scrollbar-thumb": {
+                  backgroundColor: "gray.500",
+                  borderRadius: "8px",
+                },
+              }}
             >
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">My Tasks</TableCaption>
