@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import { Users } from "./admin/Users";
 import { Dashboard } from "./Dashboard";
 import { LandingPage } from "./LandingPage";
 import { LoginPage } from "./LoginPage";
@@ -18,6 +19,8 @@ export function MainRoutes() {
       <Route path="/tasks" element={<Tasks />} />
       <Route path="/tasks/:id" element={<Tasks />} />
       <Route path="/profile" element={<Profile />} />
+
+      <Route path="/admin/users" element={<Users />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

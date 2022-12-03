@@ -56,10 +56,26 @@ export function Tasks() {
         {isLoading ? (
           <Spinner size="xl" speed="0.7s" />
         ) : (
-          <Flex direction="column" w="100%" maxW="1120px" mx="auto" px="6">
-            <ModalCreateTask isOpenModal />
-            <TableContainer bg="gray.800" borderRadius="8" boxShadow="lg" p="4">
-              <Table variant="striped" colorScheme="blackAlpha">
+          <Flex
+            direction="column"
+            w="100%"
+            h="90%"
+            maxW="1120px"
+            mx="auto"
+            my="auto"
+            px="6"
+          >
+            <Box mt={12}>
+              <ModalCreateTask isOpenModal />
+            </Box>
+            <TableContainer
+              bg="gray.800"
+              borderRadius="8"
+              boxShadow="lg"
+              p="4"
+              overflowY="auto"
+            >
+              <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">My Tasks</TableCaption>
                 <Thead>
                   <Tr>

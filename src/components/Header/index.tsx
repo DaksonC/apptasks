@@ -21,7 +21,7 @@ import { NavLink as RouterLink } from "react-router-dom";
 
 import SearchBox from "../SearchBox";
 
-const Links = ["Dashboard", "Tasks", "Profile"];
+const Links = ["Dashboard", "Tasks", "Profile", "Users"];
 
 interface INavLinkProps {
   children: ReactNode;
@@ -38,7 +38,7 @@ function NavLink({ children }: INavLinkProps) {
         color: "white",
         bg: useColorModeValue("gray.600", "gray.700"),
       }}
-      to={`/${children}`}
+      to={(children === "Users" && "/admin/users") || `/${children}`}
       _hover={{
         textDecoration: "none",
         bg: useColorModeValue("gray.600", "gray.700"),
@@ -118,7 +118,7 @@ export function Header() {
                 >
                   <Flex display={{ base: "none", md: "flex" }}>
                     <Text fontSize="2xs" fontWeight="bold" color="blue.500">
-                      Dani Abrahmov
+                      Maria da Silva
                     </Text>
                   </Flex>
                   <Avatar

@@ -7,7 +7,7 @@ import { Header } from "../../components/Header";
 
 export function Dashboard() {
   useEffect(() => {
-    document.title = "AppTasks ✔️️ |  Dashboard";
+    document.title = "AppTasks ✔️️ |  Dashboard - Admin";
   }, []);
 
   return (
