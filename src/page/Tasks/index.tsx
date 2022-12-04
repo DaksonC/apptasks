@@ -78,7 +78,7 @@ export function Tasks() {
                 "::-webkit-scrollbar": {
                   width: "8px",
                   height: "8px",
-                  backgroundColor: "gray.700",
+                  backgroundColor: "gray.800",
                   borderRadius: "20px",
                 },
                 "::-webkit-scrollbar-thumb": {
