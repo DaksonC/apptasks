@@ -59,7 +59,7 @@ export function Tasks() {
           <Flex
             direction="column"
             w="100%"
-            h="90%"
+            h="95%"
             maxW="1120px"
             mx="auto"
             my="auto"
@@ -76,12 +76,18 @@ export function Tasks() {
               overflowY="scroll"
               sx={{
                 "::-webkit-scrollbar": {
-                  width: "4px",
+                  width: "8px",
+                  height: "8px",
                   backgroundColor: "gray.700",
+                  borderRadius: "20px",
                 },
                 "::-webkit-scrollbar-thumb": {
                   backgroundColor: "gray.500",
-                  borderRadius: "8px",
+                  borderRadius: "20px",
+                },
+                "::-webkit-scrollbar-corner": {
+                  backgroundColor: "gray.800",
+                  borderRadius: "20px",
                 },
               }}
             >
