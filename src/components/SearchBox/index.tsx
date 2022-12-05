@@ -7,9 +7,8 @@ export default function SearchBox() {
       as="label"
       flex="1"
       w="100%"
-      py="4"
+      py="3"
       px="12"
-      ml="12"
       maxWidth={400}
       alignSelf="center"
       color="gray.200"

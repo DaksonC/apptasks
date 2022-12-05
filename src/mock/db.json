@@ -1,5 +1,15 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "Dakson Chaves Cruz",
+      "email": "daksonc@gmail.com",
+      "password": "123",
+      "departament": {
+        "options": []
+      }
+    }
+  ],
   "tasks": [
     {
       "title": "AppTasks",
@@ -12,10 +22,18 @@
       "id": 3
     }
   ],
-  "departments": [
+  "departaments": [
     {
       "name": "TI",
       "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Development"
+    },
+    {
+      "id": 3,
+      "name": "RPA"
     }
   ]
 }

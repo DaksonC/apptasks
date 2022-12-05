@@ -1,3 +1,4 @@
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ import { useEffect, useState } from "react";
 import { getDepartaments } from "../../../api/departaments";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
+import { ModalCreateDepartaments } from "../../../components/ModalCreateDepartaments";
 import SearchBox from "../../../components/SearchBox";
 import { IDepartaments } from "../../../interfaces";
 
@@ -62,9 +64,10 @@ export function Settings() {
             mx="auto"
             my="auto"
             px="6"
-            mt={12}
           >
-            <Box mt={12}>{/* <ModalCreateTask isOpenModal /> */}</Box>
+            <Box mt={12}>
+              <ModalCreateDepartaments isOpenModalDepartament />
+            </Box>
             <TableContainer
               bg="gray.800"
               borderRadius="8"
@@ -88,7 +91,9 @@ export function Settings() {
                 },
               }}
             >
-              <SearchBox />
+              <Box w="100%" display="flex" justifyContent="flex-start">
+                <SearchBox />
+              </Box>
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">
                   Settings Departaments
@@ -96,22 +101,38 @@ export function Settings() {
                 <Thead>
                   <Tr>
                     <Th>Departaments</Th>
-                    <Th>Action</Th>
+                    <Th isNumeric>Action</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   {departaments.map((departament) => (
                     <Tr key={departament.id}>
                       <Td>{departament.name}</Td>
-                      <Td>
-                        <Button type="button" colorScheme="facebook">
-                          Edit
+                      <Td isNumeric>
+                        <Button
+                          bgColor="transparent"
+                          _hover={{
+                            bgColor: "gray.700",
+                          }}
+                        >
+                          <EditIcon
+                            color="blue.500"
+                            cursor="pointer"
+                            transition="color 0.2s"
+                          />
                         </Button>
-                        <Button type="button" colorScheme="red">
-                          Delete
+                        <Button
+                          bgColor="transparent"
+                          _hover={{
+                            bgColor: "gray.700",
+                          }}
+                        >
+                          <DeleteIcon
+                            color="red.500"
+                            cursor="pointer"
+                            transition="color 0.2s"
+                          />
                         </Button>
-                      </Td>
-                      <Td>
                         {/* <ModalEditTask isOpenModal taskId={task.id} />
                         <ModalDeleteTask isOpenModal taskId={task.id} /> */}
                       </Td>
