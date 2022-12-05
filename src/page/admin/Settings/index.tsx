@@ -1,7 +1,7 @@
 import {
   Box,
+  Button,
   Flex,
-  Highlight,
   Spinner,
   Table,
   TableCaption,
@@ -14,24 +14,21 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import { getTasks } from "../../api/tasks";
-import { Footer } from "../../components/Footer";
-import { Header } from "../../components/Header";
-import { ModalCreateTask } from "../../components/ModalCreateTask";
-import { ModalDeleteTask } from "../../components/ModalDeleteTask";
-import { ModalEditTask } from "../../components/ModalEditTask";
-import SearchBox from "../../components/SearchBox";
-import { ITasks } from "../../interfaces";
+import { getDepartaments } from "../../../api/departaments";
+import { Footer } from "../../../components/Footer";
+import { Header } from "../../../components/Header";
+import SearchBox from "../../../components/SearchBox";
+import { IDepartaments } from "../../../interfaces";
 
-export function Tasks() {
+export function Settings() {
   const [isLoading, setIsLoading] = useState(false);
-  const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [departaments, setDepartaments] = useState<IDepartaments[]>([]);
 
-  const getAllTasks = async (): Promise<void | Error> => {
+  const getAllDepartaments = async (): Promise<void | Error> => {
     setIsLoading(true);
     try {
-      const response = await getTasks();
-      setTasks(response);
+      const response = await getDepartaments();
+      setDepartaments(response);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -39,8 +36,8 @@ export function Tasks() {
   };
 
   useEffect(() => {
-    getAllTasks();
-    document.title = "AppTasks ✔️️ |  Tasks";
+    getAllDepartaments();
+    document.title = "AppTasks ✔️️ |  Settings - Admin";
   }, []);
 
   return (
@@ -61,14 +58,13 @@ export function Tasks() {
             direction="column"
             w="100%"
             h="95%"
-            maxW="1120px"
+            maxW="720px"
             mx="auto"
             my="auto"
             px="6"
+            mt={12}
           >
-            <Box mt={12}>
-              <ModalCreateTask isOpenModal />
-            </Box>
+            <Box mt={12}>{/* <ModalCreateTask isOpenModal /> */}</Box>
             <TableContainer
               bg="gray.800"
               borderRadius="8"
@@ -94,41 +90,30 @@ export function Tasks() {
             >
               <SearchBox />
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
-                <TableCaption placement="top">My Tasks</TableCaption>
+                <TableCaption placement="top">
+                  Settings Departaments
+                </TableCaption>
                 <Thead>
                   <Tr>
-                    <Th>Project</Th>
-                    <Th>Task</Th>
-                    <Th>Create Date</Th>
-                    <Th>Estimated time</Th>
-                    <Th>Status</Th>
+                    <Th>Departaments</Th>
                     <Th>Action</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {tasks.map((task) => (
-                    <Tr key={task.id}>
-                      <Td>{task.title}</Td>
-                      <Td>{task.description}</Td>
-                      <Td>01/12/2022</Td>
-                      <Td>5 hours</Td>
+                  {departaments.map((departament) => (
+                    <Tr key={departament.id}>
+                      <Td>{departament.name}</Td>
                       <Td>
-                        <Highlight
-                          query="In Progress"
-                          styles={{
-                            px: "2",
-                            py: "1",
-                            rounded: "full",
-                            bg: "yellow.100",
-                            color: "yellow.800",
-                          }}
-                        >
-                          In Progress
-                        </Highlight>
+                        <Button type="button" colorScheme="facebook">
+                          Edit
+                        </Button>
+                        <Button type="button" colorScheme="red">
+                          Delete
+                        </Button>
                       </Td>
                       <Td>
-                        <ModalEditTask isOpenModal taskId={task.id} />
-                        <ModalDeleteTask isOpenModal taskId={task.id} />
+                        {/* <ModalEditTask isOpenModal taskId={task.id} />
+                        <ModalDeleteTask isOpenModal taskId={task.id} /> */}
                       </Td>
                     </Tr>
                   ))}

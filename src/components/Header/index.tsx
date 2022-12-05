@@ -19,15 +19,30 @@ import {
 import { ReactNode, useEffect, useState } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
 
-import SearchBox from "../SearchBox";
-
-const Links = ["Dashboard", "Tasks", "Profile", "Users"];
+const Links = ["Dashboard", "Tasks", "Profile", "Users", "Settings"];
 
 interface INavLinkProps {
   children: ReactNode;
 }
 
 function NavLink({ children }: INavLinkProps) {
+  function NavLinkRoutes() {
+    switch (children) {
+      case "Dashboard":
+        return "/dashboard";
+      case "Tasks":
+        return "/tasks";
+      case "Profile":
+        return "/profile";
+      case "Users":
+        return "/admin/users";
+      case "Settings":
+        return "/admin/settings";
+      default:
+        return "/";
+    }
+  }
+
   return (
     <Link
       as={RouterLink}
@@ -38,7 +53,7 @@ function NavLink({ children }: INavLinkProps) {
         color: "white",
         bg: useColorModeValue("gray.600", "gray.700"),
       }}
-      to={(children === "Users" && "/admin/users") || `/${children}`}
+      to={NavLinkRoutes()}
       _hover={{
         textDecoration: "none",
         bg: useColorModeValue("gray.600", "gray.700"),
@@ -93,7 +108,6 @@ export function Header() {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
-            <SearchBox />
           </HStack>
         </HStack>
         <Flex alignItems="center">

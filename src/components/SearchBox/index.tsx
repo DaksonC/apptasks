@@ -6,6 +6,7 @@ export default function SearchBox() {
     <Flex
       as="label"
       flex="1"
+      w="100%"
       py="4"
       px="12"
       ml="12"

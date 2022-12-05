@@ -1,18 +1,5 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "teste@teste.com",
-      "department": "IT"
-    },
-    {
-      "id": 2,
-      "name": "Jane Doe",
-      "email": "teste@teste.com",
-      "department": "IA"
-    }
-  ],
+  "users": [],
   "tasks": [
     {
       "title": "AppTasks",
@@ -23,6 +10,12 @@
       "title": "AppTasks",
       "description": "cria autenticação",
       "id": 3
+    }
+  ],
+  "departments": [
+    {
+      "name": "TI",
+      "id": 1
     }
   ]
 }

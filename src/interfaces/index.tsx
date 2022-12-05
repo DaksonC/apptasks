@@ -3,11 +3,16 @@ export interface IFormData {
   tasks: ITasks[];
 }
 
+export interface IDepartaments {
+  id: number;
+  name: string;
+}
+
 export interface IUsers {
   id: number;
   name: string;
   email: string;
-  department: string;
+  password: string;
 }
 
 export interface ITasks {
