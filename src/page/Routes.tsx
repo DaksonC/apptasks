@@ -23,6 +23,7 @@ export function MainRoutes() {
 
       <Route path="/admin/users" element={<Users />} />
       <Route path="/admin/settings" element={<Settings />} />
+      <Route path="/admin/settings/:id" element={<Settings />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

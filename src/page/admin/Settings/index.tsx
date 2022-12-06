@@ -1,7 +1,5 @@
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Flex,
   Spinner,
   Table,
@@ -19,6 +17,8 @@ import { getDepartaments } from "../../../api/departaments";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import { ModalCreateDepartaments } from "../../../components/ModalCreateDepartaments";
+import { ModalDeleteDepartaments } from "../../../components/ModalDeleteDepartaments";
+import { ModalEditDepartaments } from "../../../components/ModalEditDepartaments";
 import SearchBox from "../../../components/SearchBox";
 import { IDepartaments } from "../../../interfaces";
 
@@ -109,32 +109,14 @@ export function Settings() {
                     <Tr key={departament.id}>
                       <Td>{departament.name}</Td>
                       <Td isNumeric>
-                        <Button
-                          bgColor="transparent"
-                          _hover={{
-                            bgColor: "gray.700",
-                          }}
-                        >
-                          <EditIcon
-                            color="blue.500"
-                            cursor="pointer"
-                            transition="color 0.2s"
-                          />
-                        </Button>
-                        <Button
-                          bgColor="transparent"
-                          _hover={{
-                            bgColor: "gray.700",
-                          }}
-                        >
-                          <DeleteIcon
-                            color="red.500"
-                            cursor="pointer"
-                            transition="color 0.2s"
-                          />
-                        </Button>
-                        {/* <ModalEditTask isOpenModal taskId={task.id} />
-                        <ModalDeleteTask isOpenModal taskId={task.id} /> */}
+                        <ModalEditDepartaments
+                          isOpenModalDepartament
+                          departamentId={departament.id}
+                        />
+                        <ModalDeleteDepartaments
+                          isOpenModalDepartament
+                          departamentId={departament.id}
+                        />
                       </Td>
                     </Tr>
                   ))}

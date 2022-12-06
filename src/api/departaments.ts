@@ -12,3 +12,21 @@ export const createDepartament = async (body: IDepartaments) => {
 
   return data;
 };
+
+export const getDepartamentById = async (id: string) => {
+  const { data } = await api.get(`/departaments/${id}`);
+
+  return data;
+};
+
+export const updateDepartament = async (id: string, body: IDepartaments) => {
+  const { data } = await api.put(`/departaments/${id}`, body);
+
+  return data;
+};
+
+export const deleteDepartament = async (id: string) => {
+  const { data } = await api.delete(`/departaments/${id}`);
+
+  return data;
+};
