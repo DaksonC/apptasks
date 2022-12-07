@@ -60,8 +60,32 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
+        margin: 0,
+        padding: 0,
+        boxSizeing: "border-box",
         bg: "gray.900",
         color: "gray.50",
+        overflowX: "hidden",
+        overflowY: "scroll",
+        "::-webkit-scrollbar": {
+          width: "0.6rem",
+          height: "0.6rem",
+          bg: "gray.800",
+        },
+        "::-webkit-scrollbar-thumb": {
+          backgroundColor: "gray.500",
+          borderRadius: "20px",
+        },
+        ":hover::-webkit-scrollbar-thumb": {
+          backgroundColor: "gray.400",
+        },
+        ":active::-webkit-scrollbar-thumb": {
+          backgroundColor: "gray.300",
+        },
+        "::-webkit-scrollbar-corner": {
+          backgroundColor: "gray.800",
+          borderRadius: "20px",
+        },
       },
     },
   },

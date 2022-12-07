@@ -1,5 +1,16 @@
 {
-  "users": [],
+  "users": [
+    {
+      "name": "Dakson Chaves Cruz",
+      "email": "daksonc@gmail.com",
+      "occupation": "Font End ",
+      "departament": {
+        "id": 2,
+        "name": "Development"
+      },
+      "id": 1
+    }
+  ],
   "tasks": [
     {
       "title": "AppTasks",
@@ -24,6 +35,10 @@
     {
       "id": 4,
       "name": "IA"
+    },
+    {
+      "id": 5,
+      "name": "UI/UX"
     }
   ]
 }

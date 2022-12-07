@@ -16,17 +16,15 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import { getDepartaments } from "../../../api/departaments";
 import { getUsers } from "../../../api/users";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import SearchBox from "../../../components/SearchBox";
-import { IDepartaments, IUsers } from "../../../interfaces";
+import { IUsers } from "../../../interfaces";
 
 export function Users() {
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<IUsers[]>([]);
-  const [departaments, setDepartaments] = useState<IDepartaments[]>([]);
 
   const getAllUsers = async (): Promise<void | Error> => {
     setIsLoading(true);
@@ -39,20 +37,8 @@ export function Users() {
     }
   };
 
-  const getSelectDepartament = async (): Promise<void | Error> => {
-    setIsLoading(true);
-    try {
-      const response = await getDepartaments();
-      setDepartaments(response);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     getAllUsers();
-    getSelectDepartament();
     document.title = "AppTasks ✔️️ |  Users - Admin";
   }, []);
 
@@ -132,9 +118,12 @@ export function Users() {
                           <Text color="gray.500" fontSize="md" mt={1}>
                             {user.name}
                           </Text>
+                          <Text color="gray.700" fontSize="sm" mt={1}>
+                            {user.occupation}
+                          </Text>
                         </Box>
                       </Td>
-                      <Td>{departaments.map((option) => option.name)}</Td>
+                      <Td>{user.departament.name}</Td>
                       <Td isNumeric>25</Td>
                       <Td isNumeric>
                         <Button colorScheme="facebook" size="sm">

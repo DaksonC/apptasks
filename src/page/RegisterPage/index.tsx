@@ -10,26 +10,27 @@ import {
   Button,
   InputRightElement,
   Icon,
-  Select,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { createUser } from "../../api/users";
-import { IDepartaments, IUsers } from "../../interfaces";
+import { AutoCompleteDepartaments } from "../../components/AutocompleteDepartaments";
+import { IUsers } from "../../interfaces";
 
 export function RegisterPage() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState<IUsers>({
-    id: 0,
+    id: undefined,
     name: "",
     email: "",
-    password: "",
+    occupation: "",
+    departament: {
+      id: 0,
+      name: "",
+    },
   });
-  const [departament, setDepartament] = useState<IDepartaments>({
-    id: 0,
-    name: "",
-  });
-  const navigate = useNavigate();
 
   function updateModal(e: React.ChangeEvent<HTMLInputElement>) {
     setUser({
@@ -38,10 +39,14 @@ export function RegisterPage() {
     });
   }
 
-  function updateModalSelect(e: React.ChangeEvent<HTMLSelectElement>) {
-    setDepartament({
-      ...departament,
-      [e.target.name]: e.target.value,
+  // criar updateModal para o departamento
+  function updateDepartament(e: React.ChangeEvent<HTMLSelectElement>) {
+    setUser({
+      ...user,
+      departament: {
+        id: Number(e.target.value),
+        name: e.target.options[e.target.selectedIndex].text,
+      },
     });
   }
 
@@ -143,32 +148,20 @@ export function RegisterPage() {
                 <InputGroup size="md">
                   <Input
                     pr="4.5rem"
-                    type={show ? "text" : "password"}
-                    placeholder="Password"
+                    type="text"
+                    placeholder="Occupation"
                     marginBottom={4}
-                    name="password"
-                    value={user.password}
+                    name="occupation"
+                    value={user.occupation}
                     onChange={(e) => updateModal(e)}
                   />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleClick}>
-                      {show ? (
-                        <Icon as={ViewIcon} boxSize="1.5em" />
-                      ) : (
-                        <Icon as={ViewOffIcon} boxSize="1.5em" />
-                      )}
-                    </Button>
-                  </InputRightElement>
                 </InputGroup>
                 <InputGroup size="md">
                   <Input
                     pr="4.5rem"
                     type={show ? "text" : "password"}
-                    placeholder="Confirmar password"
+                    placeholder="Password"
                     marginBottom={4}
-                    name="password"
-                    value={user.password}
-                    onChange={(e) => updateModal(e)}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -180,17 +173,10 @@ export function RegisterPage() {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <Select
-                  placeholder="Departament"
-                  marginBottom={4}
+                <AutoCompleteDepartaments
+                  onChange={(e) => updateDepartament(e)}
                   name="departament"
-                  onChange={(e) => updateModalSelect(e)}
-                >
-                  <option value="Development">{departament.name}</option>
-                  <option value="IA">{departament.name}</option>
-                  <option value="RPA">{departament.name}</option>
-                  <option value="UX">{departament.name}</option>
-                </Select>
+                />
                 <Button
                   w="100%"
                   h="50px"

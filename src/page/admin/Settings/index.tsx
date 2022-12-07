@@ -76,14 +76,24 @@ export function Settings() {
               overflowY="scroll"
               sx={{
                 "::-webkit-scrollbar": {
-                  width: "8px",
-                  height: "8px",
+                  width: "9px",
+                  height: "9px",
+                  backgroundColor: "gray.800",
+                  borderRadius: "20px",
+                },
+                "::-webkit-scrollbar-track": {
                   backgroundColor: "gray.800",
                   borderRadius: "20px",
                 },
                 "::-webkit-scrollbar-thumb": {
-                  backgroundColor: "gray.500",
+                  backgroundColor: "gray.800",
                   borderRadius: "20px",
+                },
+                ":hover::-webkit-scrollbar-thumb": {
+                  backgroundColor: "gray.600",
+                },
+                ":active::-webkit-scrollbar-thumb": {
+                  backgroundColor: "gray.500",
                 },
                 "::-webkit-scrollbar-corner": {
                   backgroundColor: "gray.800",

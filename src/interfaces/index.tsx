@@ -9,10 +9,11 @@ export interface IDepartaments {
 }
 
 export interface IUsers {
-  id: number;
+  id: number | undefined;
   name: string;
   email: string;
-  password: string;
+  occupation: string;
+  departament: IDepartaments;
 }
 
 export interface ITasks {
@@ -20,6 +21,18 @@ export interface ITasks {
   title: string;
   description: string;
   finished: boolean;
-  created_at: Date;
-  updated_at: Date;
 }
+
+export interface IAutoCompleteDepartamentsProps {
+  isExternal: boolean;
+}
+
+export type TAutocompleteOptions = {
+  id: number;
+  label: string;
+};
+
+export type TDepartamentComTotalCount = {
+  data: IDepartaments[];
+  totalCount: number;
+};
