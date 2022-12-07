@@ -17,7 +17,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { ReactNode, useEffect, useState } from "react";
-import { NavLink as RouterLink } from "react-router-dom";
+import { NavLink as RouterLink, useNavigate } from "react-router-dom";
 
 const Links = ["Dashboard", "Tasks", "Profile", "Users", "Settings"];
 
@@ -67,6 +67,7 @@ function NavLink({ children }: INavLinkProps) {
 export function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -76,6 +77,16 @@ export function Header() {
       console.log(error);
     }
   }, []);
+
+  function handleClick() {
+    setIsLoading(true);
+    try {
+      navigate("/profile");
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Box
@@ -121,6 +132,7 @@ export function Header() {
               _hover={{
                 textDecoration: "none",
               }}
+              onClick={() => handleClick()}
             >
               {isLoading ? (
                 <Spinner size="md" speed="0.7s" />
@@ -132,13 +144,13 @@ export function Header() {
                 >
                   <Flex display={{ base: "none", md: "flex" }}>
                     <Text fontSize="2xs" fontWeight="bold" color="blue.500">
-                      Maria da Silva
+                      Dakson Chaves Cruz
                     </Text>
                   </Flex>
                   <Avatar
                     size="sm"
                     ml={4}
-                    src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    src="https://avatars.githubusercontent.com/u/81385265?v=4"
                   />
                 </Flex>
               )}

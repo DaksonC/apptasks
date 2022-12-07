@@ -4,22 +4,22 @@ import { useEffect, useState } from "react";
 import { getDepartaments } from "../../api/departaments";
 import { IDepartaments } from "../../interfaces";
 
-interface IAutoCompleteDepartamentsProps {
+interface ISelectDepartamentsProps {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   name: string;
 }
 
-export function AutoCompleteDepartaments({
+export function SelectDepartaments({
   onChange,
   name,
-}: IAutoCompleteDepartamentsProps) {
+}: ISelectDepartamentsProps) {
   const [departaments, setDepartaments] = useState<IDepartaments[]>([]);
 
   useEffect(() => {
     (async () => {
       const response = await getDepartaments();
       setDepartaments(response);
-      console.log(response);
+      // console.log(response);
     })();
   }, []);
 

@@ -8,6 +8,12 @@ export interface IDepartaments {
   name: string;
 }
 
+export interface ITasks {
+  id: number;
+  title: string;
+  description: string;
+  finished: boolean;
+}
 export interface IUsers {
   id: number | undefined;
   name: string;
@@ -15,24 +21,3 @@ export interface IUsers {
   occupation: string;
   departament: IDepartaments;
 }
-
-export interface ITasks {
-  id: number;
-  title: string;
-  description: string;
-  finished: boolean;
-}
-
-export interface IAutoCompleteDepartamentsProps {
-  isExternal: boolean;
-}
-
-export type TAutocompleteOptions = {
-  id: number;
-  label: string;
-};
-
-export type TDepartamentComTotalCount = {
-  data: IDepartaments[];
-  totalCount: number;
-};

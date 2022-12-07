@@ -14,13 +14,8 @@
   "tasks": [
     {
       "title": "AppTasks",
-      "description": "cria integração",
-      "id": 2
-    },
-    {
-      "title": "AppTasks",
-      "description": "cria autenticação",
-      "id": 3
+      "description": "Criar integração",
+      "id": 1
     }
   ],
   "departaments": [
@@ -34,11 +29,7 @@
     },
     {
       "id": 4,
-      "name": "IA"
-    },
-    {
-      "id": 5,
-      "name": "UI/UX"
+      "name": "IA & Machine learning"
     }
   ]
 }

@@ -91,10 +91,10 @@ export function Users() {
             >
               <SearchBox />
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
-                <TableCaption placement="top">User list</TableCaption>
+                <TableCaption placement="top">Users list</TableCaption>
                 <Thead>
                   <Tr>
-                    <Th>User</Th>
+                    <Th>Users</Th>
                     <Th>Departament</Th>
                     <Th isNumeric>Total tasks</Th>
                     <Th isNumeric>Action</Th>
@@ -112,7 +112,7 @@ export function Users() {
                         >
                           <Avatar
                             // name={user.name}
-                            // src={user.avatar_url}
+                            src="https://avatars.githubusercontent.com/u/81385265?v=4"
                             bg="gray.700"
                           />
                           <Text color="gray.500" fontSize="md" mt={1}>

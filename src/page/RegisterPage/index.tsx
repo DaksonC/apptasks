@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { createUser } from "../../api/users";
-import { AutoCompleteDepartaments } from "../../components/AutocompleteDepartaments";
+import { SelectDepartaments } from "../../components/SelectDepartaments";
 import { IUsers } from "../../interfaces";
 
 export function RegisterPage() {
@@ -39,7 +39,6 @@ export function RegisterPage() {
     });
   }
 
-  // criar updateModal para o departamento
   function updateDepartament(e: React.ChangeEvent<HTMLSelectElement>) {
     setUser({
       ...user,
@@ -173,7 +172,7 @@ export function RegisterPage() {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <AutoCompleteDepartaments
+                <SelectDepartaments
                   onChange={(e) => updateDepartament(e)}
                   name="departament"
                 />

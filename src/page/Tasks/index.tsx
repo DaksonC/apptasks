@@ -43,6 +43,9 @@ export function Tasks() {
     document.title = "AppTasks ✔️️ |  Tasks";
   }, []);
 
+  const dateAtual = new Date().toLocaleDateString();
+  // console.log(dateAtual);
+
   return (
     <>
       <Header />
@@ -110,8 +113,8 @@ export function Tasks() {
                     <Tr key={task.id}>
                       <Td>{task.title}</Td>
                       <Td>{task.description}</Td>
-                      <Td>01/12/2022</Td>
-                      <Td>5 hours</Td>
+                      <Td>{dateAtual}</Td>
+                      <Td>- hours</Td>
                       <Td>
                         <Highlight
                           query="In Progress"
