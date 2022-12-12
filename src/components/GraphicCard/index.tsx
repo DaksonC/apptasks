@@ -13,8 +13,8 @@ export function GraphicCard() {
       },
       foreColor: "#f6f8fc",
     },
-    labels: ["Completed", "In Progress", "To Do", "Blocked", "Canceled"],
-    colors: ["#040841", "#191880", "#4371ad", "#62639b", "#b4b6f5"],
+    labels: ["Completed", "In Progress", "Blocked", "Canceled"],
+    colors: ["#040841", "#2e8618", "#e4e70e", "#8f0e2a"],
     responsive: [
       {
         breakpoint: 380,
@@ -113,19 +113,25 @@ export function GraphicCard() {
             h="100%"
             flexDirection="row"
           >
-            <Text fontSize="2xl" fontWeight="bold" color="gray.100" mb="4">
+            <Text
+              fontSize="md"
+              fontWeight="bold"
+              color="gray.100"
+              mb={4}
+              mr={2}
+            >
               Total Tasks:
             </Text>
-            <Text color="gray.500" m={4} fontSize="2xl">
+            <Text color="gray.500" mb={4} fontSize="2xl">
               783
             </Text>
           </Box>
           <Select
-            w="50%"
+            w="100%"
             placeholder="Select Period"
             fontSize={["md", "2xs"]}
-            color="gray.100"
-            bgColor="gray.800"
+            color="gray.900"
+            bgColor="gray.700"
             borderColor="gray.700"
             _hover={{
               borderColor: "gray.500",
@@ -139,7 +145,7 @@ export function GraphicCard() {
         <Flex as={GridItem} area="main">
           <ApexCharts
             options={options}
-            series={[44, 55, 41, 17, 15]}
+            series={[44, 55, 41, 17]}
             type="donut"
           />
         </Flex>

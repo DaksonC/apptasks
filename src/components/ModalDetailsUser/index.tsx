@@ -65,12 +65,16 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
                 borderRadius="md"
               >
                 <TableCaption placement="top">
-                  <Flex flexDirection="row">
-                    <Text fontSize="md" p={2}>
+                  <Flex
+                    flexDirection="row"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Text fontSize="md" mr={2}>
                       Details of the user,
                     </Text>
-                    <Text fontSize="md" fontWeight="bold" p={2}>
-                      Dakson
+                    <Text fontSize="xl" fontWeight="bold">
+                      Dakson Chaves Cruz.
                     </Text>
                   </Flex>
                 </TableCaption>
@@ -92,10 +96,6 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
                   <Tr color="gray.500">
                     <Td>In Progress</Td>
                     <Td isNumeric>2</Td>
-                  </Tr>
-                  <Tr color="gray.500">
-                    <Td>To Do</Td>
-                    <Td isNumeric>1</Td>
                   </Tr>
                   <Tr color="gray.500">
                     <Td>Blocked</Td>
