@@ -22,6 +22,7 @@ export function MainRoutes() {
       <Route path="/profile" element={<Profile />} />
 
       <Route path="/admin/users" element={<Users />} />
+      <Route path="/admin/users/:id" element={<Users />} />
       <Route path="/admin/settings" element={<Settings />} />
       <Route path="/admin/settings/:id" element={<Settings />} />
 

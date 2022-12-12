@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { getUsers, getUsersSearch } from "../../../api/users";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
+import { ModalDetailsUser } from "../../../components/ModalDetailsUser";
 import SearchBox from "../../../components/SearchBox";
 import { IUsers } from "../../../interfaces";
 
@@ -133,9 +134,7 @@ export function Users() {
                       <Td>{user.departament.name}</Td>
                       <Td isNumeric>25</Td>
                       <Td isNumeric>
-                        <Button colorScheme="facebook" size="sm">
-                          Details
-                        </Button>
+                        <ModalDetailsUser isOpenModal userId={user.id} />
                       </Td>
                     </Tr>
                   ))}
