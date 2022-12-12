@@ -13,7 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import { getDepartaments } from "../../../api/departaments";
+import {
+  getDepartaments,
+  getDepartamentsSearch,
+} from "../../../api/departaments";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import { ModalCreateDepartaments } from "../../../components/ModalCreateDepartaments";
@@ -41,6 +44,13 @@ export function Settings() {
     getAllDepartaments();
     document.title = "AppTasks ✔️️ |  Settings - Admin";
   }, []);
+
+  async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target;
+    const filteredTasks = await getDepartamentsSearch(value);
+    setDepartaments(filteredTasks);
+    console.log(filteredTasks);
+  }
 
   return (
     <>
@@ -102,7 +112,7 @@ export function Settings() {
               }}
             >
               <Box w="100%" display="flex" justifyContent="flex-start">
-                <SearchBox />
+                <SearchBox onChange={(e) => handleInputChange(e)} />
               </Box>
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">

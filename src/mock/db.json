@@ -16,6 +16,11 @@
       "title": "AppTasks",
       "description": "Criar integração",
       "id": 1
+    },
+    {
+      "title": "Fogurte",
+      "description": "criar crud",
+      "id": 2
     }
   ],
   "departaments": [

@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import { getUsers } from "../../../api/users";
+import { getUsers, getUsersSearch } from "../../../api/users";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import SearchBox from "../../../components/SearchBox";
@@ -41,6 +41,13 @@ export function Users() {
     getAllUsers();
     document.title = "AppTasks ✔️️ |  Users - Admin";
   }, []);
+
+  async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target;
+    const filteredTasks = await getUsersSearch(value);
+    setUsers(filteredTasks);
+    console.log(filteredTasks);
+  }
 
   return (
     <>
@@ -89,7 +96,7 @@ export function Users() {
                 },
               }}
             >
-              <SearchBox />
+              <SearchBox onChange={(e) => handleInputChange(e)} />
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">Users list</TableCaption>
                 <Thead>

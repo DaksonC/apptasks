@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import { getTasks } from "../../api/tasks";
+import { getTasks, getTasksSearch } from "../../api/tasks";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ModalCreateTask } from "../../components/ModalCreateTask";
@@ -45,6 +45,13 @@ export function Tasks() {
 
   const dateAtual = new Date().toLocaleDateString();
   // console.log(dateAtual);
+
+  async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target;
+    const filteredTasks = await getTasksSearch(value);
+    setTasks(filteredTasks);
+    console.log(filteredTasks);
+  }
 
   return (
     <>
@@ -95,7 +102,7 @@ export function Tasks() {
                 },
               }}
             >
-              <SearchBox />
+              <SearchBox onChange={(e) => handleInputChange(e)} />
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">My Tasks</TableCaption>
                 <Thead>
