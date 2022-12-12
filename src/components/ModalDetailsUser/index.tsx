@@ -18,7 +18,11 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { getTasks } from "../../api/tasks";
+import { ITasks } from "../../interfaces";
 
 interface IModalEditTaskProps {
   isOpenModal: boolean;
@@ -27,6 +31,7 @@ interface IModalEditTaskProps {
 
 export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [totalTasks, setTotalTasks] = useState<ITasks[]>([]);
 
   const navigate = useNavigate();
 
@@ -36,6 +41,15 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
       onOpen();
     }
   }
+
+  useEffect(() => {
+    (async () => {
+      const totalTasks = await getTasks();
+      setTotalTasks(totalTasks);
+    })();
+  }, []);
+
+  const filterTotaTasks = totalTasks.length;
 
   return (
     <>
@@ -87,15 +101,15 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
                 <Tbody>
                   <Tr color="gray.300">
                     <Td>Total</Td>
-                    <Td isNumeric>25</Td>
+                    <Td isNumeric>{filterTotaTasks}</Td>
                   </Tr>
                   <Tr color="gray.500">
                     <Td>Completed</Td>
-                    <Td isNumeric>20</Td>
+                    <Td isNumeric>1</Td>
                   </Tr>
                   <Tr color="gray.500">
                     <Td>In Progress</Td>
-                    <Td isNumeric>2</Td>
+                    <Td isNumeric>1</Td>
                   </Tr>
                   <Tr color="gray.500">
                     <Td>Blocked</Td>
@@ -103,7 +117,7 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
                   </Tr>
                   <Tr color="gray.500">
                     <Td>Canceled</Td>
-                    <Td isNumeric>1</Td>
+                    <Td isNumeric>-</Td>
                   </Tr>
                 </Tbody>
               </Table>

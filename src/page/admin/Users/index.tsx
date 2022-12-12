@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  Button,
   Table,
   TableCaption,
   TableContainer,
@@ -16,16 +15,18 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
+import { getTasks } from "../../../api/tasks";
 import { getUsers, getUsersSearch } from "../../../api/users";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import { ModalDetailsUser } from "../../../components/ModalDetailsUser";
 import SearchBox from "../../../components/SearchBox";
-import { IUsers } from "../../../interfaces";
+import { ITasks, IUsers } from "../../../interfaces";
 
 export function Users() {
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<IUsers[]>([]);
+  const [totalTasks, setTotalTasks] = useState<ITasks[]>([]);
 
   const getAllUsers = async (): Promise<void | Error> => {
     setIsLoading(true);
@@ -38,8 +39,14 @@ export function Users() {
     }
   };
 
+  async function handleTotalTasks() {
+    const totalTasks = await getTasks();
+    setTotalTasks(totalTasks);
+  }
+
   useEffect(() => {
     getAllUsers();
+    handleTotalTasks();
     document.title = "AppTasks ✔️️ |  Users - Admin";
   }, []);
 
@@ -49,6 +56,8 @@ export function Users() {
     setUsers(filteredTasks);
     console.log(filteredTasks);
   }
+
+  const filterTotaTasks = totalTasks.length;
 
   return (
     <>
@@ -132,7 +141,7 @@ export function Users() {
                         </Box>
                       </Td>
                       <Td>{user.departament.name}</Td>
-                      <Td isNumeric>25</Td>
+                      <Td isNumeric>{filterTotaTasks}</Td>
                       <Td isNumeric>
                         <ModalDetailsUser isOpenModal userId={user.id} />
                       </Td>
