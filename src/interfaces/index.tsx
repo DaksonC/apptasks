@@ -18,6 +18,20 @@ export interface IUsers {
   id: number | undefined;
   name: string;
   email: string;
+  password: string;
   occupation: string;
   departament: IDepartaments;
+}
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+export interface IRegister {
+  name: string;
+  email: string;
+  password: string;
+  occupation: string;
+  departament: string;
 }

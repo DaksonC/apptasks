@@ -12,13 +12,33 @@ import {
   Icon,
   Link,
 } from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import * as yup from "yup";
 
-import { theme } from "../../styles/theme";
+import { ILogin } from "../../interfaces";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required().length(6),
+});
 
 export function LoginPage() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILogin>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<ILogin> = (data) => {
+    console.log(data);
+  };
 
   useEffect(() => {
     document.title = "AppTasks ✔️️ | Conecte-se";
@@ -36,7 +56,7 @@ export function LoginPage() {
       <Box
         w="100%"
         h={{ "80%": "80%", "100%": "100%" }}
-        maxW="460px"
+        maxW="360px"
         bg="gray.100"
         p="8"
         borderRadius="8"
@@ -86,50 +106,55 @@ export function LoginPage() {
               alignItems="center"
               flexDirection="column"
             >
-              <Box w="100%" textAlign="right">
-                <Text
-                  color={theme.colors.attention}
-                  fontWeight="light"
-                  fontSize="sm"
-                >
-                  <Link href="/register">Não sou cadastrado</Link>
-                </Text>
-              </Box>
-              <Input
-                pr="4.5rem"
-                type="email"
-                placeholder="E-mail"
-                marginBottom={4}
-              />
-              <InputGroup size="md">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Box w="100%" textAlign="right">
+                  <Text color="blue.300" fontWeight="bold" fontSize="sm">
+                    <Link href="/register">Não sou cadastrado</Link>
+                  </Text>
+                </Box>
                 <Input
                   pr="4.5rem"
-                  type={show ? "text" : "password"}
-                  placeholder="Password"
-                  marginBottom={4}
+                  type="email"
+                  placeholder="E-mail"
+                  {...register("email")}
                 />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? (
-                      <Icon as={ViewIcon} boxSize="1.5em" />
-                    ) : (
-                      <Icon as={ViewOffIcon} boxSize="1.5em" />
-                    )}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-              <Button
-                w="100%"
-                h="50px"
-                bgGradient="linear(to-l, #4028ca, #6e5faf)"
-                color="white"
-                _hover={{
-                  bgGradient: "linear(to-l, #4028ca, #6e5faf)",
-                  filter: "brightness(0.9)",
-                }}
-              >
-                Entrar
-              </Button>
+                <Text color="red.300" fontSize="sm" fontWeight="100" mb={4}>
+                  {errors.email?.message}
+                </Text>
+                <InputGroup size="md">
+                  <Input
+                    pr="4.5rem"
+                    type={show ? "text" : "password"}
+                    placeholder="Password"
+                    {...register("password")}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={handleClick}>
+                      {show ? (
+                        <Icon as={ViewIcon} boxSize="1.5em" />
+                      ) : (
+                        <Icon as={ViewOffIcon} boxSize="1.5em" />
+                      )}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                <Text color="red.300" fontSize="sm" fontWeight="100" mb={4}>
+                  {errors.password?.message}
+                </Text>
+                <Button
+                  w="100%"
+                  h="50px"
+                  bgGradient="linear(to-l, #4028ca, #6e5faf)"
+                  color="white"
+                  _hover={{
+                    bgGradient: "linear(to-l, #4028ca, #6e5faf)",
+                    filter: "brightness(0.9)",
+                  }}
+                  type="submit"
+                >
+                  Entrar
+                </Button>
+              </form>
             </Box>
           </GridItem>
           <GridItem area="footer" textAlign="center">

@@ -26,6 +26,7 @@ export function RegisterPage() {
     name: "",
     email: "",
     occupation: "",
+    password: "",
     departament: {
       id: 0,
       name: "",
