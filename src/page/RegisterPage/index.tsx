@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 import { createUser } from "../../api/users";
 import { SelectDepartaments } from "../../components/SelectDepartaments";
+import { UploaderAvatar } from "../../components/UploaderAvatar";
 import { IUsers } from "../../interfaces";
 
 export function RegisterPage() {
@@ -27,10 +28,12 @@ export function RegisterPage() {
     email: "",
     occupation: "",
     password: "",
+    confirmPassword: "",
     departament: {
       id: 0,
       name: "",
     },
+    image: "",
   });
 
   function updateModal(e: React.ChangeEvent<HTMLInputElement>) {
@@ -77,7 +80,7 @@ export function RegisterPage() {
       <form onSubmit={onSubmit}>
         <Box
           w="100%"
-          h={{ "80%": "80%", "100%": "100%" }}
+          h="100%"
           maxW="460px"
           bg="gray.100"
           p="8"
@@ -117,6 +120,8 @@ export function RegisterPage() {
                 bgClip="text"
                 fontSize={["7xl", "2xl"]}
                 fontWeight="extrabold"
+                letterSpacing="tight"
+                mb={2}
               >
                 Cadastrar-se
               </Text>
@@ -131,7 +136,7 @@ export function RegisterPage() {
                   pr="4.5rem"
                   type="text"
                   placeholder="Nome de usuário"
-                  marginBottom={4}
+                  marginBottom={2}
                   name="name"
                   value={user.name}
                   onChange={(e) => updateModal(e)}
@@ -140,7 +145,7 @@ export function RegisterPage() {
                   pr="4.5rem"
                   type="email"
                   placeholder="E-mail"
-                  marginBottom={4}
+                  marginBottom={2}
                   name="email"
                   value={user.email}
                   onChange={(e) => updateModal(e)}
@@ -150,7 +155,7 @@ export function RegisterPage() {
                     pr="4.5rem"
                     type="text"
                     placeholder="Occupation"
-                    marginBottom={4}
+                    marginBottom={2}
                     name="occupation"
                     value={user.occupation}
                     onChange={(e) => updateModal(e)}
@@ -161,7 +166,24 @@ export function RegisterPage() {
                     pr="4.5rem"
                     type={show ? "text" : "password"}
                     placeholder="Password"
-                    marginBottom={4}
+                    marginBottom={2}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={handleClick}>
+                      {show ? (
+                        <Icon as={ViewIcon} boxSize="1.5em" />
+                      ) : (
+                        <Icon as={ViewOffIcon} boxSize="1.5em" />
+                      )}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                <InputGroup size="md">
+                  <Input
+                    pr="4.5rem"
+                    type={show ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    marginBottom={2}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -177,6 +199,7 @@ export function RegisterPage() {
                   onChange={(e) => updateDepartament(e)}
                   name="departament"
                 />
+                <UploaderAvatar />
                 <Button
                   w="100%"
                   h="50px"

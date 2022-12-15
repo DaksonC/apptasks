@@ -14,13 +14,16 @@ export interface ITasks {
   description: string;
   finished: boolean;
 }
+
 export interface IUsers {
   id: number | undefined;
   name: string;
   email: string;
   password: string;
+  confirmPassword: string;
   occupation: string;
   departament: IDepartaments;
+  image: string;
 }
 
 export interface ILogin {

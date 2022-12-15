@@ -28,7 +28,6 @@ export function SelectDepartaments({
       placeholder="Select department"
       bg="gray.100"
       color="gray.500"
-      mb={4}
       _hover={{
         bg: "gray.100",
       }}

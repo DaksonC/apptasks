@@ -4,10 +4,13 @@
       "name": "Dakson Chaves Cruz",
       "email": "daksonc@gmail.com",
       "occupation": "Font End ",
+      "password": "",
+      "confirmedPassword": "",
       "departament": {
         "id": 2,
         "name": "Development"
       },
+      "image": "",
       "id": 1
     }
   ],
