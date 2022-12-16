@@ -5,12 +5,20 @@
       "email": "daksonc@gmail.com",
       "occupation": "Font End ",
       "password": "",
-      "confirmedPassword": "",
+      "confirmPassword": "",
       "departament": {
         "id": 2,
         "name": "Development"
       },
-      "image": "",
+      "image": {
+        "path": "",
+        "preview": "",
+        "name": "",
+        "size": 0,
+        "type": "",
+        "lastModified": 0,
+        "lastModifiedDate": "2022-12-16T15:51:11.443Z"
+      },
       "id": 1
     }
   ],

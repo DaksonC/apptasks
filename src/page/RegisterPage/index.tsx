@@ -33,7 +33,15 @@ export function RegisterPage() {
       id: 0,
       name: "",
     },
-    image: "",
+    image: {
+      path: "",
+      preview: "",
+      name: "",
+      size: 0,
+      type: "",
+      lastModified: 0,
+      lastModifiedDate: new Date(),
+    },
   });
 
   function updateModal(e: React.ChangeEvent<HTMLInputElement>) {

@@ -8,6 +8,15 @@ export interface IDepartaments {
   name: string;
 }
 
+export interface IImg {
+  path: string;
+  preview: string;
+  name: string;
+  size: number;
+  type: string;
+  lastModified: number;
+  lastModifiedDate: Date;
+}
 export interface ITasks {
   id: number;
   title: string;
@@ -23,7 +32,7 @@ export interface IUsers {
   confirmPassword: string;
   occupation: string;
   departament: IDepartaments;
-  image: string;
+  image: IImg;
 }
 
 export interface ILogin {
