@@ -35,9 +35,9 @@ function NavLink({ children }: INavLinkProps) {
       case "Profile":
         return "/profile";
       case "Users":
-        return "/admin/users";
+        return "/users";
       case "Settings":
-        return "/admin/settings";
+        return "/settings";
       default:
         return "/";
     }

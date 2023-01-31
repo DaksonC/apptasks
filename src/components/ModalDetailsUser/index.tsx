@@ -27,9 +27,14 @@ import { ITasks } from "../../interfaces";
 interface IModalEditTaskProps {
   isOpenModal: boolean;
   userId: number | undefined;
+  name: string;
 }
 
-export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
+export function ModalDetailsUser({
+  userId,
+  isOpenModal,
+  name,
+}: IModalEditTaskProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [totalTasks, setTotalTasks] = useState<ITasks[]>([]);
 
@@ -37,10 +42,20 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
 
   function handleOpenModal() {
     if (isOpenModal) {
-      navigate(`/admin/users/${userId}`);
+      navigate(`/users/${userId}`);
       onOpen();
     }
   }
+
+  const filterTotaTasks = totalTasks.length;
+
+  const filterTotaTasksCompleted = totalTasks.filter(
+    (task) => task.finished
+  ).length;
+
+  const filterTotaTasksInProgress = totalTasks.filter(
+    (task) => !task.finished
+  ).length;
 
   useEffect(() => {
     (async () => {
@@ -48,8 +63,6 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
       setTotalTasks(totalTasks);
     })();
   }, []);
-
-  const filterTotaTasks = totalTasks.length;
 
   return (
     <>
@@ -87,8 +100,8 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
                     <Text fontSize="md" mr={2}>
                       Details of the user,
                     </Text>
-                    <Text fontSize="xl" fontWeight="bold">
-                      Dakson Chaves Cruz.
+                    <Text fontSize="md" mr={2} color="black">
+                      {name}.
                     </Text>
                   </Flex>
                 </TableCaption>
@@ -105,19 +118,11 @@ export function ModalDetailsUser({ userId, isOpenModal }: IModalEditTaskProps) {
                   </Tr>
                   <Tr color="gray.500">
                     <Td>Completed</Td>
-                    <Td isNumeric>1</Td>
+                    <Td isNumeric>{filterTotaTasksCompleted}</Td>
                   </Tr>
                   <Tr color="gray.500">
                     <Td>In Progress</Td>
-                    <Td isNumeric>1</Td>
-                  </Tr>
-                  <Tr color="gray.500">
-                    <Td>Blocked</Td>
-                    <Td isNumeric>1</Td>
-                  </Tr>
-                  <Tr color="gray.500">
-                    <Td>Canceled</Td>
-                    <Td isNumeric>-</Td>
+                    <Td isNumeric>{filterTotaTasksInProgress}</Td>
                   </Tr>
                 </Tbody>
               </Table>

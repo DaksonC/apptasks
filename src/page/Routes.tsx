@@ -21,10 +21,10 @@ export function MainRoutes() {
       <Route path="/tasks/:id" element={<Tasks />} />
       <Route path="/profile" element={<Profile />} />
 
-      <Route path="/admin/users" element={<Users />} />
-      <Route path="/admin/users/:id" element={<Users />} />
-      <Route path="/admin/settings" element={<Settings />} />
-      <Route path="/admin/settings/:id" element={<Settings />} />
+      <Route path="/users" element={<Users />} />
+      <Route path="/users/:id" element={<Users />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/settings/:id" element={<Settings />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

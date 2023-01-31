@@ -30,9 +30,3 @@ export const deleteUser = async (id: string) => {
 
   return data;
 };
-
-export const getUsersSearch = async (value: string) => {
-  const { data } = await api.get<IUsers[]>(`/users?q=${value}`);
-
-  return data;
-};

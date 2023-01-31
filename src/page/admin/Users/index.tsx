@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { getTasks } from "../../../api/tasks";
-import { getUsers, getUsersSearch } from "../../../api/users";
+import { getUsers } from "../../../api/users";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import { ModalDetailsUser } from "../../../components/ModalDetailsUser";
@@ -27,11 +27,23 @@ export function Users() {
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<IUsers[]>([]);
   const [totalTasks, setTotalTasks] = useState<ITasks[]>([]);
+  const [search, setSearch] = useState("");
+
+  const searchLowerCase = search.toLowerCase();
+
+  const filteredUser = users.filter((user) =>
+    user.name.toLowerCase().includes(searchLowerCase)
+  );
+
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(event.target.value);
+  }
 
   const getAllUsers = async (): Promise<void | Error> => {
     setIsLoading(true);
     try {
       const response = await getUsers();
+
       setUsers(response);
       setIsLoading(false);
     } catch (error) {
@@ -49,13 +61,6 @@ export function Users() {
     handleTotalTasks();
     document.title = "AppTasks ✔️️ |  Users - Admin";
   }, []);
-
-  async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-    const filteredTasks = await getUsersSearch(value);
-    setUsers(filteredTasks);
-    console.log(filteredTasks);
-  }
 
   const filterTotaTasks = totalTasks.length;
 
@@ -106,7 +111,7 @@ export function Users() {
                 },
               }}
             >
-              <SearchBox onChange={(e) => handleInputChange(e)} />
+              <SearchBox onChange={(e) => handleSearch(e)} value={search} />
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">Users list</TableCaption>
                 <Thead>
@@ -118,7 +123,7 @@ export function Users() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {users.map((user) => (
+                  {filteredUser.map((user) => (
                     <Tr key={user.id}>
                       <Td>
                         <Box
@@ -140,10 +145,14 @@ export function Users() {
                           </Text>
                         </Box>
                       </Td>
-                      <Td>{user.departament.name}</Td>
+                      <Td>Development</Td>
                       <Td isNumeric>{filterTotaTasks}</Td>
                       <Td isNumeric>
-                        <ModalDetailsUser isOpenModal userId={user.id} />
+                        <ModalDetailsUser
+                          isOpenModal
+                          userId={user.id}
+                          name={user.name}
+                        />
                       </Td>
                     </Tr>
                   ))}

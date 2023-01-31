@@ -40,7 +40,6 @@ export function Tasks() {
     try {
       const response = await getTasks();
 
-      console.log(response);
       setTasks(response);
       setIsLoading(false);
     } catch (error) {
