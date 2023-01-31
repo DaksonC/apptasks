@@ -13,6 +13,7 @@ export default function SearchBox({ onChange }: ISearchBoxProps) {
       w="100%"
       py="3"
       px="12"
+      mb="4"
       maxWidth={400}
       alignSelf="center"
       color="gray.200"

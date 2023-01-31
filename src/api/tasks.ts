@@ -32,8 +32,14 @@ export const deleteTask = async (id: string) => {
   return data;
 };
 
-export const getTasksSearch = async (value: string) => {
-  const { data } = await api.get<ITasks[]>(`/tasks?q=${value}`);
+export const finishedTask = async (id: string) => {
+  const { data } = await api.patch(`/tasks/${id}`);
+
+  return data;
+};
+
+export const getTasksSearch = async (bady: any) => {
+  const { data } = await api.get<ITasks[]>(`/tasks`, bady);
 
   return data;
 };

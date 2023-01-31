@@ -4,14 +4,15 @@ import {
   Highlight,
   Spinner,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import moment from "moment";
 import { useEffect, useState } from "react";
 
 import { getTasks, getTasksSearch } from "../../api/tasks";
@@ -31,6 +32,8 @@ export function Tasks() {
     setIsLoading(true);
     try {
       const response = await getTasks();
+
+      console.log(response);
       setTasks(response);
       setIsLoading(false);
     } catch (error) {
@@ -38,20 +41,21 @@ export function Tasks() {
     }
   };
 
-  useEffect(() => {
-    getAllTasks();
-    document.title = "AppTasks ✔️️ |  Tasks";
-  }, []);
-
-  const dateAtual = new Date().toLocaleDateString();
-  // console.log(dateAtual);
-
   async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
     const filteredTasks = await getTasksSearch(value);
     setTasks(filteredTasks);
     console.log(filteredTasks);
   }
+
+  function formatDate(date: Date) {
+    return moment(date).format("DD/MM/YYYY");
+  }
+
+  useEffect(() => {
+    getAllTasks();
+    document.title = "AppTasks ✔️️ |  Tasks";
+  }, []);
 
   return (
     <>
@@ -64,89 +68,114 @@ export function Tasks() {
         alignItems="center"
         bgGradient="linear(to-t, gray.900, gray.600)"
       >
-        {isLoading ? (
-          <Spinner size="xl" speed="0.7s" />
-        ) : (
-          <Flex
-            direction="column"
-            w="100%"
-            h="95%"
-            maxW="1120px"
-            mx="auto"
-            my="auto"
-            px="6"
+        <Flex
+          direction="column"
+          w="100%"
+          h="95%"
+          maxW="1120px"
+          mx="auto"
+          my="auto"
+          px="6"
+        >
+          <Box mt={12}>
+            <ModalCreateTask isOpenModal />
+            <SearchBox onChange={(e) => handleInputChange(e)} />
+          </Box>
+          <TableContainer
+            bg="gray.800"
+            borderRadius="8"
+            boxShadow="lg"
+            p="4"
+            overflowY="scroll"
+            sx={{
+              "::-webkit-scrollbar": {
+                width: "8px",
+                height: "8px",
+                backgroundColor: "gray.800",
+                borderRadius: "20px",
+              },
+              "::-webkit-scrollbar-thumb": {
+                backgroundColor: "gray.500",
+                borderRadius: "20px",
+              },
+              "::-webkit-scrollbar-corner": {
+                backgroundColor: "gray.800",
+                borderRadius: "20px",
+              },
+            }}
           >
-            <Box mt={12}>
-              <ModalCreateTask isOpenModal />
-            </Box>
-            <TableContainer
-              bg="gray.800"
-              borderRadius="8"
-              boxShadow="lg"
-              p="4"
-              overflowY="scroll"
-              sx={{
-                "::-webkit-scrollbar": {
-                  width: "8px",
-                  height: "8px",
-                  backgroundColor: "gray.800",
-                  borderRadius: "20px",
-                },
-                "::-webkit-scrollbar-thumb": {
-                  backgroundColor: "gray.500",
-                  borderRadius: "20px",
-                },
-                "::-webkit-scrollbar-corner": {
-                  backgroundColor: "gray.800",
-                  borderRadius: "20px",
-                },
-              }}
+            <Flex
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
             >
-              <SearchBox onChange={(e) => handleInputChange(e)} />
-              <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
-                <TableCaption placement="top">My Tasks</TableCaption>
-                <Thead>
-                  <Tr>
-                    <Th>Project</Th>
-                    <Th>Task</Th>
-                    <Th>Create Date</Th>
-                    <Th>Estimated time</Th>
-                    <Th>Status</Th>
-                    <Th>Action</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {tasks.map((task) => (
-                    <Tr key={task.id}>
-                      <Td>{task.title}</Td>
-                      <Td>{task.description}</Td>
-                      <Td>{dateAtual}</Td>
-                      <Td>- hours</Td>
-                      <Td>
-                        <Highlight
-                          query="In Progress"
-                          styles={{
-                            px: "2",
-                            py: "1",
-                            rounded: "full",
-                            bg: "yellow.100",
-                            color: "yellow.800",
-                          }}
-                        >
-                          In Progress
-                        </Highlight>
-                      </Td>
-                      <Td>
-                        <ModalEditTask isOpenModal taskId={task.id} />
-                        <ModalDeleteTask isOpenModal taskId={task.id} />
-                      </Td>
+              <Text fontSize="2xl" fontWeight="bold" color="gray.50" mb="12">
+                My Tasks
+              </Text>
+              {isLoading ? (
+                <Spinner color="gray.50" size="xl" />
+              ) : (
+                <Table
+                  variant="striped"
+                  colorScheme="blackAlpha"
+                  maxWidth="100%"
+                >
+                  <Thead>
+                    <Tr>
+                      <Th>Project</Th>
+                      <Th>Task</Th>
+                      <Th>Create Date</Th>
+                      <Th>Status</Th>
+                      <Th>Action</Th>
                     </Tr>
-                  ))}
-                </Tbody>
-              </Table>
-            </TableContainer>
-          </Flex>
-        )}
+                  </Thead>
+                  <Tbody>
+                    {tasks.map((task) => (
+                      <Tr key={task.id}>
+                        <Td>{task.title}</Td>
+                        <Td>{task.description}</Td>
+                        <Td>{formatDate(task.updated_at)}</Td>
+                        <Td>
+                          {task.finished ? (
+                            <Highlight
+                              query="Completed"
+                              styles={{
+                                px: "2",
+                                py: "1",
+                                rounded: "full",
+                                bg: "green.500",
+                                color: "white",
+                              }}
+                            >
+                              Completed
+                            </Highlight>
+                          ) : (
+                            <Highlight
+                              query="In Progress"
+                              styles={{
+                                px: "2",
+                                py: "1",
+                                rounded: "full",
+                                bg: "yellow.100",
+                                color: "yellow.800",
+                              }}
+                            >
+                              In Progress
+                            </Highlight>
+                          )}
+                        </Td>
+                        <Td>
+                          <ModalEditTask isOpenModal taskId={task.id} />
+                          <ModalDeleteTask isOpenModal taskId={task.id} />
+                        </Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table>
+              )}
+            </Flex>
+          </TableContainer>
+        </Flex>
       </Box>
       <Footer />
     </>

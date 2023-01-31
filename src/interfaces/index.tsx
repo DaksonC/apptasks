@@ -21,6 +21,7 @@ export interface ITasks {
   id: number;
   title: string;
   description: string;
+  updated_at: Date;
   finished: boolean;
 }
 

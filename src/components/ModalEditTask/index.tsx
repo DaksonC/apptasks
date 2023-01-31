@@ -15,7 +15,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getTaskById, updateTask } from "../../api/tasks";
+import { finishedTask, getTaskById, updateTask } from "../../api/tasks";
 
 interface IModalEditTaskProps {
   isOpenModal: boolean;
@@ -55,6 +55,14 @@ export function ModalEditTask({ isOpenModal, taskId }: IModalEditTaskProps) {
     if (isOpenModal) {
       navigate(`/tasks/${taskId}`);
       onOpen();
+    }
+  }
+
+  async function handleCompletedTask() {
+    if (id !== undefined) {
+      await finishedTask(String(id));
+      window.location.reload();
+      onClose();
     }
   }
 
@@ -105,6 +113,16 @@ export function ModalEditTask({ isOpenModal, taskId }: IModalEditTaskProps) {
                   setTask({ ...task, description: e.target.value })
                 }
               />
+              <Button
+                mt={4}
+                variant="ghost"
+                bg="green.500"
+                color="white"
+                _hover={{ bg: "green.100", color: "gray.500" }}
+                onClick={() => handleCompletedTask()}
+              >
+                Complete task
+              </Button>
             </FormControl>
           </ModalBody>
           <ModalFooter>
