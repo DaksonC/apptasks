@@ -37,9 +37,3 @@ export const finishedTask = async (id: string) => {
 
   return data;
 };
-
-export const getTasksSearch = async (bady: any) => {
-  const { data } = await api.get<ITasks[]>(`/tasks`, bady);
-
-  return data;
-};

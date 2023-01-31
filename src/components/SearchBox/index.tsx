@@ -1,11 +1,11 @@
-import { SearchIcon } from "@chakra-ui/icons";
-import { Flex, Icon, Input } from "@chakra-ui/react";
+import { Flex, Input } from "@chakra-ui/react";
 
 interface ISearchBoxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 }
 
-export default function SearchBox({ onChange }: ISearchBoxProps) {
+export default function SearchBox({ onChange, value }: ISearchBoxProps) {
   return (
     <Flex
       as="label"
@@ -29,8 +29,8 @@ export default function SearchBox({ onChange }: ISearchBoxProps) {
         placeholder="Search"
         _placeholder={{ color: "gray.400" }}
         onChange={onChange}
+        value={value}
       />
-      <Icon as={SearchIcon} fontSize="20" />
     </Flex>
   );
 }

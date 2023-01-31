@@ -15,7 +15,7 @@ import {
 import moment from "moment";
 import { useEffect, useState } from "react";
 
-import { getTasks, getTasksSearch } from "../../api/tasks";
+import { getTasks } from "../../api/tasks";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ModalCreateTask } from "../../components/ModalCreateTask";
@@ -27,6 +27,13 @@ import { ITasks } from "../../interfaces";
 export function Tasks() {
   const [isLoading, setIsLoading] = useState(false);
   const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [search, setSearch] = useState("");
+
+  const searchLowerCase = search.toLowerCase();
+
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchLowerCase)
+  );
 
   const getAllTasks = async (): Promise<void | Error> => {
     setIsLoading(true);
@@ -41,15 +48,12 @@ export function Tasks() {
     }
   };
 
-  async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-    const filteredTasks = await getTasksSearch(value);
-    setTasks(filteredTasks);
-    console.log(filteredTasks);
-  }
-
   function formatDate(date: Date) {
     return moment(date).format("DD/MM/YYYY");
+  }
+
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(event.target.value);
   }
 
   useEffect(() => {
@@ -79,7 +83,7 @@ export function Tasks() {
         >
           <Box mt={12}>
             <ModalCreateTask isOpenModal />
-            <SearchBox onChange={(e) => handleInputChange(e)} />
+            <SearchBox onChange={(e) => handleSearch(e)} value={search} />
           </Box>
           <TableContainer
             bg="gray.800"
@@ -130,7 +134,7 @@ export function Tasks() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {tasks.map((task) => (
+                    {filteredTasks.map((task) => (
                       <Tr key={task.id}>
                         <Td>{task.title}</Td>
                         <Td>{task.description}</Td>
