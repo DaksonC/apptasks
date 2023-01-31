@@ -32,14 +32,14 @@ export function ModalDeleteDepartaments({
 
   function handleOpenModal() {
     if (isOpenModalDepartament) {
-      navigate(`/admin/settings/${departamentId}`);
+      navigate(`/departaments/${departamentId}`);
       onOpen();
     }
   }
 
   async function handleClickDelete() {
     const response = await deleteDepartament(String(id));
-    navigate("/admin/settings/");
+    navigate("/departaments/");
     window.location.reload();
     onClose();
     console.log(response);

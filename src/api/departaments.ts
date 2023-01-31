@@ -30,9 +30,3 @@ export const deleteDepartament = async (id: string) => {
 
   return data;
 };
-
-export const getDepartamentsSearch = async (value: string) => {
-  const { data } = await api.get<IDepartaments[]>(`/departaments?q=${value}`);
-
-  return data;
-};

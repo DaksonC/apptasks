@@ -13,19 +13,16 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import {
-  getDepartaments,
-  getDepartamentsSearch,
-} from "../../../api/departaments";
+import { getDepartaments } from "../../../api/departaments";
 import { Footer } from "../../../components/Footer";
 import { Header } from "../../../components/Header";
 import { ModalCreateDepartaments } from "../../../components/ModalCreateDepartaments";
 import { ModalDeleteDepartaments } from "../../../components/ModalDeleteDepartaments";
 import { ModalEditDepartaments } from "../../../components/ModalEditDepartaments";
-import SearchBox from "../../../components/SearchBox";
+// import SearchBox from "../../../components/SearchBox";
 import { IDepartaments } from "../../../interfaces";
 
-export function Settings() {
+export function Departaments() {
   const [isLoading, setIsLoading] = useState(false);
   const [departaments, setDepartaments] = useState<IDepartaments[]>([]);
 
@@ -44,13 +41,6 @@ export function Settings() {
     getAllDepartaments();
     document.title = "AppTasks ✔️️ |  Settings - Admin";
   }, []);
-
-  async function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-    const filteredTasks = await getDepartamentsSearch(value);
-    setDepartaments(filteredTasks);
-    console.log(filteredTasks);
-  }
 
   return (
     <>
@@ -112,7 +102,7 @@ export function Settings() {
               }}
             >
               <Box w="100%" display="flex" justifyContent="flex-start">
-                <SearchBox onChange={(e) => handleInputChange(e)} />
+                {/* <SearchBox onChange={(e) => handleInputChange(e)} /> */}
               </Box>
               <Table variant="striped" colorScheme="blackAlpha" maxWidth="100%">
                 <TableCaption placement="top">

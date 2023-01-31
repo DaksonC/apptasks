@@ -19,7 +19,7 @@ import {
 import { ReactNode, useEffect, useState } from "react";
 import { NavLink as RouterLink, useNavigate } from "react-router-dom";
 
-const Links = ["Dashboard", "Tasks", "Profile", "Users", "Settings"];
+const Links = ["Dashboard", "Tasks", "Profile", "Users", "Departaments"];
 
 interface INavLinkProps {
   children: ReactNode;
@@ -36,8 +36,8 @@ function NavLink({ children }: INavLinkProps) {
         return "/profile";
       case "Users":
         return "/users";
-      case "Settings":
-        return "/settings";
+      case "Departaments":
+        return "/departaments";
       default:
         return "/";
     }

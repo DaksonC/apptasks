@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Settings } from "./admin/Settings";
+import { Departaments } from "./admin/Departaments";
 import { Users } from "./admin/Users";
 import { Dashboard } from "./Dashboard";
 import { LandingPage } from "./LandingPage";
@@ -23,8 +23,8 @@ export function MainRoutes() {
 
       <Route path="/users" element={<Users />} />
       <Route path="/users/:id" element={<Users />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/settings/:id" element={<Settings />} />
+      <Route path="/departaments" element={<Departaments />} />
+      <Route path="/departaments/:id" element={<Departaments />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

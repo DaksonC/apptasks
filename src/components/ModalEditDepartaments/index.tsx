@@ -52,7 +52,7 @@ export function ModalEditDepartaments({
 
   function handleOpenModal() {
     if (isOpenModalDepartament) {
-      navigate(`/admin/settings/${departamentId}`);
+      navigate(`/departaments/${departamentId}`);
       onOpen();
     }
   }
