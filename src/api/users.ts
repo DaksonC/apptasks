@@ -1,14 +1,20 @@
 import api from ".";
-import { IUsers } from "../interfaces";
+import { ILogin, IUsers } from "../interfaces";
 
-export const getUsers = async () => {
-  const { data } = await api.get<IUsers[]>("/users");
+export const createUser = async (bady: IUsers) => {
+  const { data } = await api.post("/users", bady);
 
   return data;
 };
 
-export const createUser = async (bady: IUsers) => {
-  const { data } = await api.post("/users", bady);
+export const login = async (bady: ILogin) => {
+  const { data } = await api.post("/login", bady);
+
+  return data;
+};
+
+export const getUsers = async () => {
+  const { data } = await api.get<IUsers[]>("/users");
 
   return data;
 };

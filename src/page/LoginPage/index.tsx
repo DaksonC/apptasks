@@ -15,8 +15,10 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
+import { login } from "../../api/users";
 import { ILogin } from "../../interfaces";
 
 const schema = yup.object().shape({
@@ -28,6 +30,8 @@ export function LoginPage() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -36,8 +40,11 @@ export function LoginPage() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<ILogin> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<ILogin> = (bady) => {
+    login(bady);
+    console.log(bady);
+    navigate("/profile");
+    window.location.reload();
   };
 
   useEffect(() => {

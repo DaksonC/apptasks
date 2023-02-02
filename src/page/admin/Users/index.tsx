@@ -124,7 +124,7 @@ export function Users() {
                 </Thead>
                 <Tbody>
                   {filteredUser.map((user) => (
-                    <Tr key={user.id}>
+                    <Tr key={user.name}>
                       <Td>
                         <Box
                           display="flex"
@@ -140,9 +140,9 @@ export function Users() {
                           <Text color="gray.500" fontSize="md" mt={1}>
                             {user.name}
                           </Text>
-                          <Text color="gray.700" fontSize="sm" mt={1}>
+                          {/* <Text color="gray.700" fontSize="sm" mt={1}>
                             {user.occupation}
-                          </Text>
+                          </Text> */}
                         </Box>
                       </Td>
                       <Td>Development</Td>
@@ -150,7 +150,7 @@ export function Users() {
                       <Td isNumeric>
                         <ModalDetailsUser
                           isOpenModal
-                          userId={user.id}
+                          userId={Number(user.name)}
                           name={user.name}
                         />
                       </Td>

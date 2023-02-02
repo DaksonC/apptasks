@@ -32,6 +32,10 @@ const schema = yup.object().shape({
 });
 
 export function RegisterPage() {
+  const [show, setShow] = useState(false);
+
+  const handleClick = () => setShow(!show);
+
   const navigate = useNavigate();
 
   const {
@@ -47,9 +51,6 @@ export function RegisterPage() {
     navigate("/login");
     window.location.reload();
   };
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
 
   useEffect(() => {
     document.title = "AppTasks ✔️️ | Cadastrar-se";
