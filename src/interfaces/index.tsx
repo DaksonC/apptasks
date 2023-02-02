@@ -26,14 +26,10 @@ export interface ITasks {
 }
 
 export interface IUsers {
-  id: number | undefined;
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
-  occupation: string;
-  departament: IDepartaments;
-  image: IImg;
 }
 
 export interface ILogin {

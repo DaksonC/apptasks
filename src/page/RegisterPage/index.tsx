@@ -11,70 +11,49 @@ import {
   InputRightElement,
   Icon,
 } from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 
 import { createUser } from "../../api/users";
-import { SelectDepartaments } from "../../components/SelectDepartaments";
-import { UploaderAvatar } from "../../components/UploaderAvatar";
 import { IUsers } from "../../interfaces";
+
+const schema = yup.object().shape({
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().required().length(6),
+  confirmPassword: yup
+    .string()
+    .required()
+    .length(6)
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
+});
 
 export function RegisterPage() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState<IUsers>({
-    id: undefined,
-    name: "",
-    email: "",
-    occupation: "",
-    password: "",
-    confirmPassword: "",
-    departament: {
-      id: 0,
-      name: "",
-    },
-    image: {
-      path: "",
-      preview: "",
-      name: "",
-      size: 0,
-      type: "",
-      lastModified: 0,
-      lastModifiedDate: new Date(),
-    },
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUsers>({
+    resolver: yupResolver(schema),
   });
 
-  function updateModal(e: React.ChangeEvent<HTMLInputElement>) {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function updateDepartament(e: React.ChangeEvent<HTMLSelectElement>) {
-    setUser({
-      ...user,
-      departament: {
-        id: Number(e.target.value),
-        name: e.target.options[e.target.selectedIndex].text,
-      },
-    });
-  }
-
-  async function onSubmit(e: React.ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const response = await createUser(user);
-    console.log(response);
+  const onSubmit: SubmitHandler<IUsers> = (user) => {
+    createUser(user);
     navigate("/login");
     window.location.reload();
-  }
+  };
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   useEffect(() => {
     document.title = "AppTasks ✔️️ | Cadastrar-se";
   }, []);
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
 
   return (
     <Box
@@ -85,7 +64,7 @@ export function RegisterPage() {
       alignItems="center"
       bgGradient="linear(to-t, gray.900, gray.600)"
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Box
           w="100%"
           h="100%"
@@ -145,36 +124,28 @@ export function RegisterPage() {
                   type="text"
                   placeholder="Nome de usuário"
                   marginBottom={2}
-                  name="name"
-                  value={user.name}
-                  onChange={(e) => updateModal(e)}
+                  {...register("name")}
                 />
+                <Text color="red.300" fontSize="sm" fontWeight="100" mb={4}>
+                  {errors.name?.message}
+                </Text>
                 <Input
                   pr="4.5rem"
                   type="email"
                   placeholder="E-mail"
                   marginBottom={2}
-                  name="email"
-                  value={user.email}
-                  onChange={(e) => updateModal(e)}
+                  {...register("email")}
                 />
-                <InputGroup size="md">
-                  <Input
-                    pr="4.5rem"
-                    type="text"
-                    placeholder="Occupation"
-                    marginBottom={2}
-                    name="occupation"
-                    value={user.occupation}
-                    onChange={(e) => updateModal(e)}
-                  />
-                </InputGroup>
+                <Text color="red.300" fontSize="sm" fontWeight="100" mb={4}>
+                  {errors.email?.message}
+                </Text>
                 <InputGroup size="md">
                   <Input
                     pr="4.5rem"
                     type={show ? "text" : "password"}
                     placeholder="Password"
                     marginBottom={2}
+                    {...register("password")}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -186,12 +157,16 @@ export function RegisterPage() {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
+                <Text color="red.300" fontSize="sm" fontWeight="100" mb={4}>
+                  {errors.password?.message}
+                </Text>
                 <InputGroup size="md">
                   <Input
                     pr="4.5rem"
                     type={show ? "text" : "password"}
                     placeholder="Confirm Password"
                     marginBottom={2}
+                    {...register("confirmPassword")}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -203,11 +178,9 @@ export function RegisterPage() {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <SelectDepartaments
-                  onChange={(e) => updateDepartament(e)}
-                  name="departament"
-                />
-                <UploaderAvatar />
+                <Text color="red.300" fontSize="sm" fontWeight="100" mb={4}>
+                  {errors.confirmPassword?.message}
+                </Text>
                 <Button
                   w="100%"
                   h="50px"

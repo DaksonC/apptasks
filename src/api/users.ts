@@ -7,8 +7,8 @@ export const getUsers = async () => {
   return data;
 };
 
-export const createUser = async (body: IUsers) => {
-  const { data } = await api.post("/users", body);
+export const createUser = async (bady: IUsers) => {
+  const { data } = await api.post("/users", bady);
 
   return data;
 };
